@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+dist/
+yarn-error.log
+.env.*
+yarn.lock
+
+cypress/videos
