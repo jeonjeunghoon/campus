@@ -15,11 +15,20 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(jpe?g|gif|png|webp)$/,
+        type: 'asset',
+      },
+      {
+        test: /\.svg$/i,
+        use: ['@svgr/webpack'],
+      },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
+      assets: path.resolve(__dirname, 'src/assets/'),
       pages: path.resolve(__dirname, 'src/pages/'),
       components: path.resolve(__dirname, 'src/components/'),
       styles: path.resolve(__dirname, 'src/styles/'),
