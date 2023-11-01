@@ -1,41 +1,51 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
 import MascotSvgIcon from 'assets/svg/mascot.svg';
 
-export const ROUTE_URL = {
+const ROUTE_URL = {
   HOME: '/',
   ANNOUNCEMENT: '/announcement',
 };
 
-// export const URL_NAME = {
-//   '/': '우아한테크코스',
-//   '/announcement': '공지사항',
-// } as const;
+const PAGE_TITLE = {
+  '/': '우아한테크코스',
+  '/announcement': '공지사항',
+} as const;
 
-// export type UrlNameKey = keyof typeof URL_NAME;
+type PageTitle = keyof typeof PAGE_TITLE;
+
+const typeGuard = (pathname: string): pathname is PageTitle =>
+  Object.keys(PAGE_TITLE).includes(pathname);
 
 export default function Header() {
-  // const { pathname } = useLocation();
-  // const name = URL_NAME[pathname];
+  const { pathname } = useLocation();
 
   return (
     <S.Header>
-      <S.Link to={ROUTE_URL.HOME}>
-        <MascotSvgIcon />
-        공지사항
-        {/* {name} */}
-      </S.Link>
+      <S.Wrapper>
+        <S.Link to={ROUTE_URL.HOME}>
+          <MascotSvgIcon />
+          {typeGuard(pathname) && PAGE_TITLE[pathname]}
+        </S.Link>
+      </S.Wrapper>
     </S.Header>
   );
 }
 
 const S = {
   Header: styled.header`
-    padding-left: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
 
     background-color: #00d473;
+  `,
+
+  Wrapper: styled.div`
+    width: 1000px;
   `,
 
   Link: styled(Link)`
@@ -46,7 +56,6 @@ const S = {
     font-size: 3.2rem;
     text-decoration: none;
 
-    &,
     &:visited,
     &:hover,
     &:active {
