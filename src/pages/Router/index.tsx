@@ -1,5 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import Announcement from 'pages/Announcement';
+
 import App from '../../App';
 
 export default function Router() {
@@ -7,6 +9,12 @@ export default function Router() {
     {
       path: '/',
       element: <App />,
+      children: [
+        {
+          path: 'announcement',
+          element: <Announcement />,
+        },
+      ],
     },
   ]);
 
