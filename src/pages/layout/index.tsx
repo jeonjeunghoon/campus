@@ -21,6 +21,8 @@ const S = {
   Container: styled.div`
     width: 100%;
     height: 100%;
+
+    background-color: #f5f5f5;
   `,
 
   BackgroundSection: styled.section`
@@ -30,13 +32,11 @@ const S = {
     height: calc(100% - 80px);
     padding: 40px 0;
 
-    background-color: #f5f5f5;
+    overflow-y: auto;
   `,
 
   ContentSection: styled.section`
     width: 1000px;
     height: 100%;
-
-    background-color: #ffffff;
   `,
 };
