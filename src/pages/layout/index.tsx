@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
-import Header from 'components/Header';
+import Header from 'pages/layout/Header';
 
 export default function Layout() {
   return (
