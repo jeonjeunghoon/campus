@@ -2,20 +2,22 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
+import { ROUTES } from 'constants/routes';
 import { parseCreatedAt } from 'utils/time';
 
 type Props = {
+  id: number;
   title: string;
   author: string;
   createdAt: string;
 };
 
-export default function Item({ title, author, createdAt }: Props) {
+export default function Item({ id, title, author, createdAt }: Props) {
   const { date, time } = parseCreatedAt(createdAt);
 
   return (
     <li>
-      <S.Link to=''>
+      <S.Link to={ROUTES.announcementView.getPathWithId(id)}>
         <S.Title>{title}</S.Title>
         <S.Container>
           <p>{author}</p>
@@ -36,8 +38,7 @@ const S = {
     gap: 16px;
     width: 100%;
     height: 120px;
-    padding: 28px 24px;
-    border-radius: 8px;
+    padding: 24px 32px;
 
     background-color: #ffffff;
   `,
