@@ -5,9 +5,11 @@ import { useAnnouncementList } from 'pages/Announcement/useAnnouncementList';
 import List from './List';
 
 export default function Announcement() {
-  const { announcementList, isLoading } = useAnnouncementList();
+  const { announcementList, isLoading, isError } = useAnnouncementList();
 
-  if (isLoading || !announcementList) return null;
+  if (isLoading) return <div>로딩 중...</div>;
+
+  if (isError || !announcementList) return <div>에러</div>;
 
   return (
     <S.Article>
