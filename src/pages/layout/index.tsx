@@ -9,9 +9,11 @@ export default function Layout() {
     <S.Container>
       <Header />
       <S.BackgroundSection>
+        <S.Block />
         <S.ContentSection>
           <Outlet />
         </S.ContentSection>
+        <S.Block />
       </S.BackgroundSection>
     </S.Container>
   );
@@ -19,24 +21,29 @@ export default function Layout() {
 
 const S = {
   Container: styled.div`
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-
-    background-color: #f5f5f5;
   `,
 
   BackgroundSection: styled.section`
     display: flex;
+    flex: 1;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 80px);
-    padding: 40px 0;
 
-    overflow-y: auto;
+    background-color: #f5f5f5;
   `,
 
   ContentSection: styled.section`
+    flex-grow: 1;
     width: 1000px;
-    height: 100%;
+  `,
+
+  Block: styled.div`
+    flex-shrink: 0;
+    min-height: 40px;
   `,
 };
