@@ -1,12 +1,12 @@
-import { REQUEST_URL } from 'constants/apis/url';
+import { REQUEST_URL } from 'constants/url';
 import { AnnouncementListResponse } from 'type/announcement';
 
 import { useGetData } from 'hooks/useGetData';
 
 export const useAnnouncementList = (usePagination = true) => {
   const requestUrl = usePagination
-    ? REQUEST_URL.ANNOUNCEMENT_LIST_WITH_PAGINATION
-    : REQUEST_URL.ANNOUNCEMENT_LIST_WITH_CURSOR;
+    ? REQUEST_URL.announcementListWithPagination
+    : REQUEST_URL.announcementListWithCursor;
 
   const {
     data: announcementList,
