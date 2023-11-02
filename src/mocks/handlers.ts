@@ -1,1 +1,3 @@
-export const handlers = [];
+import { announcementHandlers } from './handlers/announcement';
+
+export const handlers = [...announcementHandlers];
