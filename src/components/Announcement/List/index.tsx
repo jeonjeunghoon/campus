@@ -1,17 +1,15 @@
 import styled from '@emotion/styled';
 
-import { Announcement } from 'type/announcement';
+import { useAnnouncementList } from 'hooks/Announcement/useAnnouncementList';
 
 import Item from './Item';
 
-type Props = {
-  announcementList: Announcement[];
-};
+export default function List() {
+  const { announcementList } = useAnnouncementList();
 
-export default function List({ announcementList }: Props) {
   return (
     <S.List>
-      {announcementList.map((announcement) => {
+      {announcementList?.map((announcement) => {
         return <Item key={announcement.id} {...announcement} />;
       })}
     </S.List>
