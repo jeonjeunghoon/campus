@@ -1,33 +1,20 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
 import MascotSvgIcon from 'assets/svg/mascot.svg';
 
-const ROUTE_URL = {
-  HOME: '/',
-  ANNOUNCEMENT: '/announcement',
-};
-
-const PAGE_TITLE = {
-  '/': '우아한테크코스',
-  '/announcement': '공지사항',
-} as const;
-
-type PageTitle = keyof typeof PAGE_TITLE;
-
-const typeGuard = (pathname: string): pathname is PageTitle =>
-  Object.keys(PAGE_TITLE).includes(pathname);
+import { useCurrentRouteInformation } from './useCurrentRouteInformation';
 
 export default function Header() {
-  const { pathname } = useLocation();
+  const { path, title } = useCurrentRouteInformation();
 
   return (
     <S.Header>
       <S.Wrapper>
-        <S.Link to={ROUTE_URL.HOME}>
+        <S.Link to={path}>
           <MascotSvgIcon />
-          {typeGuard(pathname) && PAGE_TITLE[pathname]}
+          {title}
         </S.Link>
       </S.Wrapper>
     </S.Header>
