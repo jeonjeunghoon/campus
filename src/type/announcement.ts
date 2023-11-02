@@ -13,3 +13,5 @@ export type AnnouncementListResponse = {
   totalElements: number;
   totalPages: number;
 };
+
+export type AnnouncementResponse = Omit<Announcement, 'id'>;

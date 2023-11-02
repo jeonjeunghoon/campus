@@ -5,8 +5,8 @@ import { useGetData } from 'hooks/useGetData';
 
 export const useAnnouncementList = (usePagination = true) => {
   const requestUrl = usePagination
-    ? REQUEST_URL.announcementListWithPagination
-    : REQUEST_URL.announcementListWithCursor;
+    ? `${REQUEST_URL.announcements}/pagination`
+    : `${REQUEST_URL.announcements}/cursor`;
 
   const {
     data: announcementList,
