@@ -16,10 +16,8 @@ export const useAnnouncementList = (usePagination = true) => {
 
   return {
     announcementList: announcementList?.announcements,
-    page: announcementList?.page,
-    size: announcementList?.size,
-    totalElements: announcementList?.totalElements,
-    totalPages: announcementList?.totalPages,
+    hasNext: announcementList?.hasNext,
+    lastCursorId: announcementList?.lastCursorId,
     isLoading,
     isError,
   };

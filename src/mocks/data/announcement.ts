@@ -59,10 +59,8 @@ export const announcementList: AnnouncementListResponse = {
       createdAt: '2023-10-11T17:10:04:3434',
     },
   ],
-  page: 1,
-  size: 10,
-  totalElements: 4,
-  totalPages: 10,
+  hasNext: true,
+  lastCursorId: 1,
 };
 
 export const announcement: AnnouncementResponse = {

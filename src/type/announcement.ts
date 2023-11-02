@@ -8,10 +8,8 @@ export type Announcement = {
 
 export type AnnouncementListResponse = {
   announcements: Announcement[];
-  page: number;
-  size: number;
-  totalElements: number;
-  totalPages: number;
+  hasNext: boolean;
+  lastCursorId: number;
 };
 
 export type AnnouncementResponse = Omit<Announcement, 'id'>;
