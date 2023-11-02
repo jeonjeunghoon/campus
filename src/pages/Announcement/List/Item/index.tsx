@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
+import { parseCreatedAt } from 'utils/time';
+
 type Props = {
   title: string;
   author: string;
@@ -9,14 +11,17 @@ type Props = {
 };
 
 export default function Item({ title, author, createdAt }: Props) {
+  const { date, time } = parseCreatedAt(createdAt);
+
   return (
     <li>
       <S.Link to=''>
         <S.Title>{title}</S.Title>
         <S.Container>
           <p>{author}</p>
-          <p>•</p>
-          <p>{createdAt}</p>
+          <S.Round />
+          <p>{date}</p>
+          <p>{time}</p>
         </S.Container>
       </S.Link>
     </li>
@@ -43,13 +48,18 @@ const S = {
 
   Container: styled.div`
     display: flex;
+    align-items: center;
     gap: 4px;
 
     color: #aaaaaa;
     font-size: 1.6rem;
   `,
 
-  AuthorText: styled.p``,
+  Round: styled.div`
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
 
-  CreatedAtText: styled.p``,
+    background-color: #aaaaaa;
+  `,
 };

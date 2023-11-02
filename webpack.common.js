@@ -37,6 +37,7 @@ module.exports = {
       pages: path.resolve(__dirname, 'src/pages/'),
       styles: path.resolve(__dirname, 'src/styles/'),
       type: path.resolve(__dirname, 'src/type/'),
+      utils: path.resolve(__dirname, 'src/utils/'),
     },
   },
   output: {
