@@ -3,11 +3,7 @@ import styled from '@emotion/styled';
 import { useAnnouncement } from './useAnnouncement';
 
 export default function AnnouncementView() {
-  const { author, date, time, title, content, isLoading, isError } = useAnnouncement();
-
-  if (isLoading) return <div>로딩 중...</div>;
-
-  if (isError) return <div>에러</div>;
+  const { author, date, time, title, content } = useAnnouncement();
 
   return (
     <S.Container>
@@ -30,8 +26,6 @@ export default function AnnouncementView() {
 
 const ContentWrapper = `
   padding: 24px 32px;
-
-  background-color: #ffffff;
 `;
 
 const S = {
@@ -50,7 +44,7 @@ const S = {
 
     & > * {
       padding: 16px 24px;
-      background-color: #ffffff;
+      background-color: ${({ theme }) => theme.colors.contentWrapper};
     }
   `,
 
@@ -71,6 +65,7 @@ const S = {
   Title: styled.h1`
     ${ContentWrapper}
 
+    background-color: ${({ theme }) => theme.colors.contentWrapper};
     font-size: 3.6rem;
   `,
 
@@ -79,6 +74,7 @@ const S = {
 
     flex-grow: 1;
 
+    background-color: ${({ theme }) => theme.colors.contentWrapper};
     font-size: 2rem;
   `,
 };

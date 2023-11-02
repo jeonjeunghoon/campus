@@ -28,7 +28,7 @@ const S = {
     align-items: center;
     height: 80px;
 
-    background-color: #00d473;
+    background-color: ${({ theme }) => theme.colors.primary};
   `,
 
   Wrapper: styled.div`
@@ -46,7 +46,7 @@ const S = {
     &:visited,
     &:hover,
     &:active {
-      color: white;
+      color: ${({ theme }) => theme.colors.text};
     }
   `,
 };
