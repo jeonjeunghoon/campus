@@ -28,11 +28,15 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
+      apis: path.resolve(__dirname, 'src/apis/'),
       assets: path.resolve(__dirname, 'src/assets/'),
-      pages: path.resolve(__dirname, 'src/pages/'),
       components: path.resolve(__dirname, 'src/components/'),
-      styles: path.resolve(__dirname, 'src/styles/'),
+      constants: path.resolve(__dirname, 'src/constants/'),
+      hooks: path.resolve(__dirname, 'src/hooks/'),
       mocks: path.resolve(__dirname, 'src/mocks/'),
+      pages: path.resolve(__dirname, 'src/pages/'),
+      styles: path.resolve(__dirname, 'src/styles/'),
+      type: path.resolve(__dirname, 'src/type/'),
     },
   },
   output: {
