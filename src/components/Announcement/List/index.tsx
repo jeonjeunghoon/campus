@@ -4,13 +4,17 @@ import { useAnnouncementList } from 'hooks/Announcement/useAnnouncementList';
 
 import Item from './Item';
 
-export default function List() {
+type Props = {
+  isDashboard?: boolean;
+};
+
+export default function List({ isDashboard = false }: Props) {
   const { announcementList } = useAnnouncementList();
 
   return (
     <S.List>
       {announcementList?.map((announcement) => {
-        return <Item key={announcement.id} {...announcement} />;
+        return <Item key={announcement.id} isDashboard={isDashboard} {...announcement} />;
       })}
     </S.List>
   );

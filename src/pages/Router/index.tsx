@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ROUTES } from 'constants/routes';
 
 import Announcement from 'pages/Announcement';
+import AnnouncementDashboard from 'pages/AnnouncementDashboard';
 import AnnouncementView from 'pages/AnnouncementView';
 
 import App from '../../App';
@@ -20,6 +21,10 @@ export default function Router() {
         {
           path: ROUTES.announcementView.path,
           element: <AnnouncementView />,
+        },
+        {
+          path: ROUTES.announcementDashboard.path,
+          element: <AnnouncementDashboard />,
         },
       ],
     },

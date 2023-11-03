@@ -1,5 +1,8 @@
 export const ROUTES = {
-  home: { path: '', title: '우아한테크코스' },
+  home: {
+    path: '',
+    title: '우아한테크코스',
+  },
   announcement: {
     path: 'announcement',
     title: '공지사항',
@@ -7,6 +10,10 @@ export const ROUTES = {
   announcementView: {
     path: 'announcement/:announcementId',
     title: '공지사항',
-    getPathWithId: (announcementId: number) => `${announcementId}`,
+    getAbsolutePathWithId: (announcementId: number) => `/announcement/${announcementId}`,
+  },
+  announcementDashboard: {
+    path: 'announcement/dashboard',
+    title: '공지사항 관리',
   },
 } as const;
