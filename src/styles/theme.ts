@@ -1,14 +1,37 @@
-const colors = {
-  primary: '#00D473',
+const button = {
+  color: {
+    primary: '#00d473',
+    secondary: '#f9f9fa',
+    text: {
+      primary: '#ffffff',
+      secondary: '#717171',
+    },
+  },
+  size: {
+    small: 'padding: 0.4rem 1.2rem;font-size: 1.6rem;',
+    medium: 'padding: 0.8rem 1.6rem;font-size: 2rem;',
+    large: 'padding: 1.2rem 2rem;font-size: 2.4rem;',
+  },
+};
 
-  background: '#F5F5F5',
+const colors = {
+  primary: '#00d473',
+
+  background: '#f5f5f5',
   contentWrapper: '#ffffff',
   text: '#ffffff',
   infoText: '#aaaaaa',
-} as const;
 
+  button: button.color,
+} as const;
 export type Colors = typeof theme.colors;
+
+const size = {
+  button: button.size,
+};
+export type Size = typeof theme.size;
 
 export const theme = {
   colors,
+  size,
 };
