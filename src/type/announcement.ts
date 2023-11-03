@@ -13,3 +13,9 @@ export type AnnouncementListResponse = {
 };
 
 export type AnnouncementResponse = Omit<Announcement, 'id'>;
+
+export type AnnouncementEditRequest = {
+  title: string;
+  content: string;
+  author: string;
+};

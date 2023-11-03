@@ -24,4 +24,14 @@ export const announcementHandlers = [
       status: 200,
     });
   }),
+
+  // 공지 수정
+  http.patch(`${REQUEST_URL.announcements}/:announcementId`, () => {
+    return new HttpResponse();
+  }),
+
+  // 공지 삭제
+  http.delete(`${REQUEST_URL.announcements}/:announcementId`, () => {
+    return new HttpResponse();
+  }),
 ];
