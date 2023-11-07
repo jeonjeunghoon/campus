@@ -1,16 +1,18 @@
-import { ComponentPropsWithRef } from 'react';
+import { LinkProps, Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
 import { ColorList, SizeList, VariantList } from 'type/style';
 
 type Props = {
+  to: string;
   variant?: VariantList;
   size?: SizeList;
   color?: ColorList;
-} & ComponentPropsWithRef<'button'>;
+} & LinkProps;
 
-export default function Button({
+export default function StyledLink({
+  to,
   variant = 'primary',
   size = 'medium',
   color = 'primary',
@@ -18,17 +20,22 @@ export default function Button({
   ...rest
 }: Props) {
   return (
-    <S.Button $variant={variant} $size={size} $color={color} {...rest}>
+    <S.StyledLink to={to} $variant={variant} $size={size} $color={color} {...rest}>
       {children}
-    </S.Button>
+    </S.StyledLink>
   );
 }
 
 const S = {
-  Button: styled.button<{ $variant: VariantList; $size: SizeList; $color: ColorList }>`
+  StyledLink: styled(Link)<{ $variant: VariantList; $size: SizeList; $color: ColorList }>`
     ${({ theme, $size }) => theme.size.button[$size]}
-
     background-color: ${({ theme, $variant }) => theme.colors.button[$variant]};
     color: ${({ theme, $color }) => theme.colors.button.text[$color]};
+
+    &:visited,
+    &:active,
+    &:hover {
+      color: ${({ theme, $color }) => theme.colors.button.text[$color]};
+    }
   `,
 };

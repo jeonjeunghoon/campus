@@ -7,6 +7,7 @@ import { useAnnouncementMutate } from 'hooks/Announcement/useAnnouncementMutate'
 import { parseCreatedAt } from 'utils/time';
 
 import Button from 'components/Button';
+import StyledLink from 'components/StyledLink';
 
 type Props = {
   id: number;
@@ -40,7 +41,7 @@ export default function Item({ id, title, author, createdAt, isDashboard = false
         </S.ContentContainer>
         {isDashboard && (
           <S.ManageContainer>
-            <S.Link to={`/${ROUTES.announcementEditor.path}`}>수정</S.Link>
+            <StyledLink to={`/${ROUTES.announcementEditor.path}`}>수정</StyledLink>
             <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>
               삭제
             </Button>
@@ -99,16 +100,5 @@ const S = {
   ManageContainer: styled.div`
     display: flex;
     gap: 16px;
-  `,
-
-  Link: styled(Link)`
-    ${({ theme }) => theme.size.button['medium']}
-
-    background-color: ${({ theme }) => theme.colors.button['primary']};
-    &:visited,
-    &:active,
-    &:hover {
-      color: ${({ theme }) => theme.colors.button.text['primary']};
-    }
   `,
 };
