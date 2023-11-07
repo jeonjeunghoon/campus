@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 import { REQUEST_URL } from 'constants/url';
-import { announcement, announcementList } from 'mocks/data/announcement';
+import { announcement, announcementList, newAnnouncement } from 'mocks/data/announcement';
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)
@@ -19,9 +19,26 @@ export const announcementHandlers = [
   }),
 
   // 공지 조회
-  http.get(`${REQUEST_URL.announcements}/:announcementId`, () => {
+  http.get(`${REQUEST_URL.announcements}/:announcementId`, ({ params }) => {
+    const { announcementId } = params;
+
+    if (announcementId === '20')
+      return HttpResponse.json(newAnnouncement, {
+        status: 200,
+      });
+
     return HttpResponse.json(announcement, {
       status: 200,
+    });
+  }),
+
+  // 공지 게시
+  http.post(REQUEST_URL.announcements, () => {
+    return new HttpResponse(null, {
+      status: 201,
+      headers: {
+        Location: '/api/announcements/20',
+      },
     });
   }),
 

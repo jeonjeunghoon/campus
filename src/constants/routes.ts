@@ -16,4 +16,8 @@ export const ROUTES = {
     path: 'announcement/dashboard',
     title: '공지사항 관리',
   },
+  announcementEditor: {
+    path: 'announcement/editor',
+    title: '공지사항 작성',
+  },
 } as const;

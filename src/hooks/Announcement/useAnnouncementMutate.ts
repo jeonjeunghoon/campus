@@ -11,9 +11,11 @@ export const useAnnouncementMutate = () => {
 
   const { mutate: postAnnouncementMutate } = useMutation({
     mutationFn: (data: AnnouncementAddRequest) => postAnnouncement(data),
-    onSuccess: () => {
+    onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
-      navigate('/');
+
+      const trimmedUrl = response.replace('/api', '').replace('/announcements', '/announcement');
+      navigate(trimmedUrl);
     },
   });
 

@@ -9,8 +9,12 @@ export const getAnnouncementList = (url: string): Promise<AnnouncementListRespon
 export const getAnnouncement = (announcementId: number) =>
   https.get(`${REQUEST_URL.announcements}/${announcementId}`);
 
-export const postAnnouncement = (data: AnnouncementAddRequest) =>
-  https.post(`${REQUEST_URL.announcements}`, data);
+export const postAnnouncement = async (data: AnnouncementAddRequest): Promise<string> => {
+  const response = await https.post(`${REQUEST_URL.announcements}`, data);
+  const location = response.headers['location'];
+
+  return location;
+};
 
 export const deleteAnnouncement = (announcementId: number) =>
   https.delete(`${REQUEST_URL.announcements}/${announcementId}`);
