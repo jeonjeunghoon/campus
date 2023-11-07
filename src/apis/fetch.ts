@@ -1,37 +1,23 @@
-export const fetchApis = () => {
-  const get = async <ResponseData>(requestUrl: string) => {
-    try {
-      const response = await fetch(requestUrl);
+import axios from 'axios';
 
-      if (!response.ok) throw new Error('Network response was not ok ' + response.statusText);
+const instance = axios.create({
+  baseURL: 'http://localhost:3000/',
+  // headers: {'X-Custom-Header': 'foobar'}
+});
 
-      const data: ResponseData = await response.json();
+export const https = {
+  get: async (url: string) => {
+    const response = await instance.get(url);
+    const data = response.data;
 
-      return { data };
-    } catch (error) {
-      return { data: null, error };
-    }
-  };
+    return data;
+  },
 
-  const mutation = async <RequestBody>(
-    method: 'POST' | 'PATCH' | 'PUT' | 'DELETE',
-    requestUrl: string,
-    body: RequestBody | null = null,
-  ) => {
-    try {
-      const response = await fetch(requestUrl, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      });
+  post: <RequestData>(url: string, data: RequestData) => instance.post(url, data),
 
-      if (!response.ok) throw new Error('Network response was not ok ' + response.statusText);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  patch: <RequestData>(url: string, data: RequestData) => instance.patch(url, data),
 
-  return { get, mutation };
+  put: <RequestData>(url: string, data: RequestData) => instance.put(url, data),
+
+  delete: (url: string) => instance.delete(url),
 };

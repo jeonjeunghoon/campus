@@ -1,15 +1,20 @@
 import { useParams } from 'react-router-dom';
 
-import { REQUEST_URL } from 'constants/url';
-import { AnnouncementResponse } from 'type/announcement';
-import { parseCreatedAt } from 'utils/time';
+import { useQuery } from '@tanstack/react-query';
 
-import { useGetData } from 'hooks/useGetData';
+import { getAnnouncement } from 'apis/announcement';
+import { parseCreatedAt } from 'utils/time';
 
 export const useAnnouncement = () => {
   const { announcementId } = useParams();
-  const requestUrl = `${REQUEST_URL.announcements}/${announcementId}`;
-  const { data: announcement, isLoading, isError } = useGetData<AnnouncementResponse>(requestUrl);
+  const {
+    data: announcement,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: [],
+    queryFn: () => getAnnouncement(Number(announcementId)),
+  });
   const { date, time } = parseCreatedAt(announcement ? announcement.createdAt : '');
 
   return {
