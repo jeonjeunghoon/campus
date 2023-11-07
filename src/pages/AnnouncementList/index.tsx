@@ -1,5 +1,5 @@
 import List from 'components/Announcement/List';
 
-export default function Announcement() {
+export default function AnnouncementList() {
   return <List />;
 }

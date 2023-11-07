@@ -2,8 +2,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from 'constants/routes';
 
-import Announcement from 'pages/Announcement';
 import AnnouncementDashboard from 'pages/AnnouncementDashboard';
+import AnnouncementList from 'pages/AnnouncementList';
 import AnnouncementView from 'pages/AnnouncementView';
 
 import App from '../../App';
@@ -15,8 +15,8 @@ export default function Router() {
       element: <App />,
       children: [
         {
-          path: ROUTES.announcement.path,
-          element: <Announcement />,
+          path: ROUTES.announcementList.path,
+          element: <AnnouncementList />,
         },
         {
           path: ROUTES.announcementView.path,

@@ -3,7 +3,7 @@ export const ROUTES = {
     path: '',
     title: '우아한테크코스',
   },
-  announcement: {
+  announcementList: {
     path: 'announcement',
     title: '공지사항',
   },

@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import styled from '@emotion/styled';
 
-import { deleteAnnouncement } from 'apis/announcement';
 import { ROUTES } from 'constants/routes';
+import { useAnnouncementMutate } from 'hooks/Announcement/useAnnouncementMutate';
 import { parseCreatedAt } from 'utils/time';
 
 import Button from 'components/Button';
@@ -20,17 +18,10 @@ type Props = {
 
 export default function Item({ id, title, author, createdAt, isDashboard = false }: Props) {
   const { date, time } = parseCreatedAt(createdAt);
+  const { deleteAnnouncementMutate } = useAnnouncementMutate();
 
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: deleteAnnouncement,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['announcementList'] });
-    },
-  });
-
-  const deleteAnnouncement1 = (selectedId: number) => {
-    if (confirm('정말 삭제하시겠습니까?')) mutate(selectedId);
+  const deleteAnnouncement = (selectedId: number) => {
+    if (confirm('정말 삭제하시겠습니까?')) deleteAnnouncementMutate(selectedId);
   };
 
   return (
@@ -50,7 +41,7 @@ export default function Item({ id, title, author, createdAt, isDashboard = false
         {isDashboard && (
           <S.ManageContainer>
             <S.Link to={`/${ROUTES.announcementEditor.path}`}>수정</S.Link>
-            <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement1(id)}>
+            <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>
               삭제
             </Button>
           </S.ManageContainer>

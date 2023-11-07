@@ -1,3 +1,6 @@
+export const BASE_URL = process.env.BASE_URL;
+export const DOMAIN_URL = process.env.DOMAIN_URL;
+
 export const REQUEST_URL = {
-  announcements: '/api/announcements',
+  announcements: `${BASE_URL}/announcements`,
 };

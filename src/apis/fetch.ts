@@ -1,8 +1,15 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-const instance = axios.create({
-  baseURL: 'http://localhost:3000/',
-  // headers: {'X-Custom-Header': 'foobar'}
+import { BASE_URL } from 'constants/url';
+
+const BASIC_AUTH = `Basic ${btoa('woowa')}`;
+
+const instance: AxiosInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: BASIC_AUTH,
+  },
 });
 
 export const https = {
@@ -13,11 +20,27 @@ export const https = {
     return data;
   },
 
-  post: <RequestData>(url: string, data: RequestData) => instance.post(url, data),
+  post: async <RequestData>(url: string, data: RequestData) => {
+    const response = await instance.post(url, data);
 
-  patch: <RequestData>(url: string, data: RequestData) => instance.patch(url, data),
+    return response;
+  },
 
-  put: <RequestData>(url: string, data: RequestData) => instance.put(url, data),
+  patch: async <RequestData>(url: string, data: RequestData) => {
+    const response = await instance.patch(url, data);
 
-  delete: (url: string) => instance.delete(url),
+    return response;
+  },
+
+  put: async <RequestData>(url: string, data: RequestData) => {
+    const response = await instance.put(url, data);
+
+    return response;
+  },
+
+  delete: async (url: string) => {
+    const response = await instance.delete(url);
+
+    return response;
+  },
 };
