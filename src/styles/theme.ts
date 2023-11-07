@@ -14,6 +14,13 @@ const button = {
   },
 };
 
+const modal = {
+  color: {
+    backdrop: '#333333',
+    content: '#ffffff',
+  },
+};
+
 const colors = {
   primary: '#00d473',
 
@@ -23,6 +30,7 @@ const colors = {
   infoText: '#aaaaaa',
 
   button: button.color,
+  modal: modal.color,
 } as const;
 export type Colors = typeof theme.colors;
 
