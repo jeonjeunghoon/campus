@@ -5,7 +5,6 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { CONFIRM, PLACEHOLDER } from 'constants/message';
-import { ROUTES } from 'constants/routes';
 import { useAnnouncementMutate } from 'hooks/Announcement/useAnnouncementMutate';
 import { NAME, formatAnnouncementPayload } from 'utils/announcement/format';
 
@@ -18,7 +17,7 @@ export default function AnnouncementEditor() {
   const cancelWriting: FormEventHandler = (event) => {
     event.preventDefault();
 
-    if (confirm(CONFIRM.cancel)) navigate(`/${ROUTES.announcementDashboard.path}`);
+    if (confirm(CONFIRM.cancel)) navigate('..');
   };
 
   const postAnnouncement: FormEventHandler<HTMLFormElement> = (event) => {

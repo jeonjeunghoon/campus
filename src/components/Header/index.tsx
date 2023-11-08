@@ -24,6 +24,7 @@ export default function Header() {
 const S = {
   Header: styled.header`
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     height: 80px;

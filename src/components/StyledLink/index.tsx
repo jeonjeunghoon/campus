@@ -20,22 +20,22 @@ export default function StyledLink({
   ...rest
 }: Props) {
   return (
-    <S.StyledLink to={to} $variant={variant} $size={size} $color={color} {...rest}>
+    <S.StyledLink to={to} variant={variant} size={size} color={color} {...rest}>
       {children}
     </S.StyledLink>
   );
 }
 
 const S = {
-  StyledLink: styled(Link)<{ $variant: VariantList; $size: SizeList; $color: ColorList }>`
-    ${({ theme, $size }) => theme.size.button[$size]}
-    background-color: ${({ theme, $variant }) => theme.colors.button[$variant]};
-    color: ${({ theme, $color }) => theme.colors.button.text[$color]};
+  StyledLink: styled(Link)<{ variant: VariantList; size: SizeList; color: ColorList }>`
+    ${({ theme, size }) => theme.size.button[size]}
+    background-color: ${({ theme, variant }) => theme.colors.button[variant]};
+    color: ${({ theme, color }) => theme.colors.button.text[color]};
 
     &:visited,
     &:active,
     &:hover {
-      color: ${({ theme, $color }) => theme.colors.button.text[$color]};
+      color: ${({ theme, color }) => theme.colors.button.text[color]};
     }
   `,
 };

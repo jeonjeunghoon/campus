@@ -3,21 +3,29 @@ export const ROUTES = {
     path: '',
     title: '우아한테크코스',
   },
-  announcementList: {
+  announcementLayout: {
     path: 'announcement',
     title: '공지사항',
   },
+  announcement: {
+    path: '',
+    title: '공지사항',
+  },
   announcementView: {
-    path: 'announcement/:announcementId',
+    path: ':announcementId',
     title: '공지사항',
     getAbsolutePathWithId: (announcementId: number) => `/announcement/${announcementId}`,
   },
+  announcementDashboardLayout: {
+    path: 'dashboard',
+    title: '공지사항 관리',
+  },
   announcementDashboard: {
-    path: 'announcement/dashboard',
+    path: '',
     title: '공지사항 관리',
   },
   announcementEditor: {
-    path: 'announcement/editor',
-    title: '공지사항 작성',
+    path: 'editor',
+    title: '공지사항 관리',
   },
 } as const;

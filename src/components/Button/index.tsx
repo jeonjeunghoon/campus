@@ -18,17 +18,17 @@ export default function Button({
   ...rest
 }: Props) {
   return (
-    <S.Button $variant={variant} $size={size} $color={color} {...rest}>
+    <S.Button variant={variant} size={size} color={color} {...rest}>
       {children}
     </S.Button>
   );
 }
 
 const S = {
-  Button: styled.button<{ $variant: VariantList; $size: SizeList; $color: ColorList }>`
-    ${({ theme, $size }) => theme.size.button[$size]}
+  Button: styled.button<{ variant: VariantList; size: SizeList; color: ColorList }>`
+    ${({ theme, size }) => theme.size.button[size]}
 
-    background-color: ${({ theme, $variant }) => theme.colors.button[$variant]};
-    color: ${({ theme, $color }) => theme.colors.button.text[$color]};
+    background-color: ${({ theme, variant }) => theme.colors.button[variant]};
+    color: ${({ theme, color }) => theme.colors.button.text[color]};
   `,
 };

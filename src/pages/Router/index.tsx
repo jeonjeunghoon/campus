@@ -2,10 +2,13 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from 'constants/routes';
 
+import Announcement from 'pages/Announcement';
 import AnnouncementDashboard from 'pages/AnnouncementDashboard';
+import AnnouncementDashboardLayout from 'pages/AnnouncementDashboardLayout';
 import AnnouncementEditor from 'pages/AnnouncementEditor';
-import AnnouncementList from 'pages/AnnouncementList';
+import AnnouncementLayout from 'pages/AnnouncementLayout';
 import AnnouncementView from 'pages/AnnouncementView';
+import Home from 'pages/Home';
 
 import App from '../../App';
 
@@ -16,20 +19,36 @@ export default function Router() {
       element: <App />,
       children: [
         {
-          path: ROUTES.announcementList.path,
-          element: <AnnouncementList />,
+          path: ROUTES.home.path,
+          element: <Home />,
         },
         {
-          path: ROUTES.announcementView.path,
-          element: <AnnouncementView />,
-        },
-        {
-          path: ROUTES.announcementDashboard.path,
-          element: <AnnouncementDashboard />,
-        },
-        {
-          path: ROUTES.announcementEditor.path,
-          element: <AnnouncementEditor />,
+          path: ROUTES.announcementLayout.path,
+          element: <AnnouncementLayout />,
+          children: [
+            {
+              path: ROUTES.announcement.path,
+              element: <Announcement />,
+            },
+            {
+              path: ROUTES.announcementView.path,
+              element: <AnnouncementView />,
+            },
+            {
+              path: ROUTES.announcementDashboardLayout.path,
+              element: <AnnouncementDashboardLayout />,
+              children: [
+                {
+                  path: ROUTES.announcementDashboard.path,
+                  element: <AnnouncementDashboard />,
+                },
+                {
+                  path: ROUTES.announcementEditor.path,
+                  element: <AnnouncementEditor />,
+                },
+              ],
+            },
+          ],
         },
       ],
     },

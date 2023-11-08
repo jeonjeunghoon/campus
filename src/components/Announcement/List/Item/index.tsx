@@ -41,7 +41,7 @@ export default function Item({ id, title, author, createdAt, isDashboard = false
         </S.ContentContainer>
         {isDashboard && (
           <S.ManageContainer>
-            <StyledLink to={`/${ROUTES.announcementEditor.path}`}>수정</StyledLink>
+            <StyledLink to={ROUTES.announcementEditor.path}>수정</StyledLink>
             <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>
               삭제
             </Button>
