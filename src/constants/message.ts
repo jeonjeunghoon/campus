@@ -1,6 +1,7 @@
 export const CONFIRM = {
   cancel: '작성을 취소하시겠습니까?',
   post: '공지사항을 게시하시겠습니까?',
+  edit: '공지사항을 수정하시겠습니까?',
 };
 
 export const PLACEHOLDER = {

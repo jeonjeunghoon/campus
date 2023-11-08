@@ -7,7 +7,7 @@ import StyledLink from 'components/StyledLink';
 export default function Home() {
   return (
     <S.Container>
-      <StyledLink to={ROUTES.announcement.path} size='large'>
+      <StyledLink to={ROUTES.announcementLayout.path} size='large'>
         공지사항
       </StyledLink>
     </S.Container>

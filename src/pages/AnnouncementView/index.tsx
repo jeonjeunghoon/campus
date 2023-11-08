@@ -1,9 +1,12 @@
+import { useParams } from 'react-router-dom';
+
 import styled from '@emotion/styled';
 
 import { useAnnouncement } from './useAnnouncement';
 
 export default function AnnouncementView() {
-  const { author, date, time, title, content } = useAnnouncement();
+  const { announcementId } = useParams();
+  const { author, date, time, title, content } = useAnnouncement(announcementId);
 
   return (
     <S.Container>

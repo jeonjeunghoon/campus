@@ -4,15 +4,24 @@ export type Announcement = {
   content: string;
   author: string;
   createdAt: string;
+  slackChannel: string;
 };
 
-export type AnnouncementListResponse = {
+export type AnnouncementListOffsetResponse = {
+  announcements: Announcement[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+};
+
+export type AnnouncementListCursorResponse = {
   announcements: Announcement[];
   hasNext: boolean;
   lastCursorId: number;
 };
 
-export type AnnouncementResponse = Omit<Announcement, 'id'>;
+export type AnnouncementResponse = Omit<Announcement, 'id' | 'slackChannel'>;
 
 export type AnnouncementAddRequest = {
   title: FormDataEntryValue | null;
@@ -21,8 +30,4 @@ export type AnnouncementAddRequest = {
   slackChannel: FormDataEntryValue | null;
 };
 
-export type AnnouncementEditRequest = {
-  title: string;
-  content: string;
-  author: string;
-};
+export type AnnouncementEditRequest = Omit<AnnouncementAddRequest, 'slackChannel'>;

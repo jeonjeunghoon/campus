@@ -2,12 +2,22 @@ import { useNavigate } from 'react-router-dom';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deleteAnnouncement, postAnnouncement } from 'apis/announcement';
-import { AnnouncementAddRequest } from 'type/announcement';
+import { deleteAnnouncement, editAnnouncement, postAnnouncement } from 'apis/announcement';
+import { AnnouncementAddRequest, AnnouncementEditRequest } from 'type/announcement';
 
-export const useAnnouncementMutate = () => {
+export const useAnnouncementMutate = (id: number = 0) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const { mutate: editAnnouncementMutate } = useMutation({
+    mutationFn: (data: AnnouncementEditRequest) => editAnnouncement(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['announcementList'] });
+      const url = `/announcement/${id}`;
+
+      navigate(url);
+    },
+  });
 
   const { mutate: postAnnouncementMutate } = useMutation({
     mutationFn: (data: AnnouncementAddRequest) => postAnnouncement(data),
@@ -26,5 +36,5 @@ export const useAnnouncementMutate = () => {
     },
   });
 
-  return { postAnnouncementMutate, deleteAnnouncementMutate };
+  return { editAnnouncementMutate, postAnnouncementMutate, deleteAnnouncementMutate };
 };

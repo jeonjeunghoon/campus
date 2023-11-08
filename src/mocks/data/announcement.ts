@@ -1,6 +1,6 @@
-import { AnnouncementListResponse, AnnouncementResponse } from 'type/announcement';
+import { AnnouncementListOffsetResponse, AnnouncementResponse } from 'type/announcement';
 
-export const announcementList: AnnouncementListResponse = {
+export const announcementListOffset: AnnouncementListOffsetResponse = {
   announcements: [
     {
       id: 1,
@@ -8,6 +8,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 2,
@@ -15,6 +16,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 3,
@@ -22,6 +24,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 4,
@@ -29,6 +32,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 5,
@@ -36,6 +40,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 6,
@@ -43,6 +48,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 7,
@@ -50,6 +56,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 8,
@@ -57,6 +64,7 @@ export const announcementList: AnnouncementListResponse = {
       content: '공지 내용입니다',
       author: '아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
     {
       id: 20,
@@ -64,10 +72,13 @@ export const announcementList: AnnouncementListResponse = {
       content: 'NEW 공지 내용입니다',
       author: 'NEW 아커',
       createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
     },
   ],
-  hasNext: true,
-  lastCursorId: 1,
+  page: 0,
+  size: 10,
+  totalElements: 20,
+  totalPages: 2,
 };
 
 export const announcement: AnnouncementResponse = {

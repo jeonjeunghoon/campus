@@ -1,5 +1,5 @@
-import { FormEventHandler, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FormEventHandler } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -10,13 +10,23 @@ import { useAnnouncementMutate } from 'hooks/Announcement/useAnnouncementMutate'
 
 import Button from 'components/Button';
 
+import { useAnnouncementEditor } from './useAnnouncementEditor';
+
 export default function AnnouncementEditor() {
-  const { postAnnouncementMutate } = useAnnouncementMutate();
-  const [author, setAuthor] = useState('');
-  const [slackChannel, setSlackChannel] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const { state } = useLocation();
+  const {
+    isEdit,
+    author,
+    slackChannel,
+    title,
+    content,
+    setAuthor,
+    setSlackChannel,
+    setTitle,
+    setContent,
+  } = useAnnouncementEditor(state);
   const navigate = useNavigate();
+  const { editAnnouncementMutate, postAnnouncementMutate } = useAnnouncementMutate(state);
 
   const cancelWriting: FormEventHandler = (event) => {
     event.preventDefault();
@@ -37,8 +47,20 @@ export default function AnnouncementEditor() {
     if (confirm(CONFIRM.post)) postAnnouncementMutate(newAnnouncement);
   };
 
+  const editAnnouncement: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    const editedAnnouncement = {
+      author,
+      title,
+      content,
+    };
+
+    if (confirm(CONFIRM.edit)) editAnnouncementMutate(editedAnnouncement);
+  };
+
   return (
-    <S.Form method='post' onSubmit={postAnnouncement}>
+    <S.Form method='post' onSubmit={isEdit ? editAnnouncement : postAnnouncement}>
       <S.InfoContainer>
         <S.AuthorInput
           type='text'
@@ -58,7 +80,7 @@ export default function AnnouncementEditor() {
           placeholder={PLACEHOLDER.slackChannel}
           value={slackChannel}
           onChange={(event) => setSlackChannel(event.currentTarget.value)}
-          required
+          required={!isEdit} // API명세에서 수정 시 슬랙 채널은 해당 사항 없음 -> 백엔드와 이야기 해야 함
         ></S.SlackChannelInput>
       </S.InfoContainer>
       <S.TitleInput
@@ -84,7 +106,7 @@ export default function AnnouncementEditor() {
         <Button type='button' variant='secondary' color='secondary' onClick={cancelWriting}>
           취소하기
         </Button>
-        <Button type='submit'>등록하기</Button>
+        <Button type='submit'>{isEdit ? '수정하기' : '등록하기'}</Button>
       </S.ActionContainer>
     </S.Form>
   );

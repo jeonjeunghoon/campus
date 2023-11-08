@@ -3,19 +3,17 @@ import { useQuery } from '@tanstack/react-query';
 import { getAnnouncementList } from 'apis/announcement';
 import { REQUEST_URL } from 'constants/url';
 
-export const useAnnouncementList = (usePagination = true) => {
-  const url = usePagination
-    ? `${REQUEST_URL.announcements}/pagination`
-    : `${REQUEST_URL.announcements}/cursor`;
-
+export const useAnnouncementList = () => {
   const { data } = useQuery({
     queryKey: ['announcementList'],
-    queryFn: () => getAnnouncementList(url),
+    queryFn: () => getAnnouncementList(`${REQUEST_URL.announcements}/offset`),
   });
 
   return {
     announcementList: data?.announcements,
-    hasNext: data?.hasNext,
-    lastCursorId: data?.lastCursorId,
+    page: data?.page,
+    size: data?.size,
+    totalElements: data?.totalElements,
+    totalPages: data?.totalPages,
   };
 };

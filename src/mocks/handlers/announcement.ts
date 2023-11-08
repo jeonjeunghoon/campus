@@ -1,19 +1,19 @@
 import { HttpResponse, http } from 'msw';
 
 import { REQUEST_URL } from 'constants/url';
-import { announcement, announcementList, newAnnouncement } from 'mocks/data/announcement';
+import { announcement, announcementListOffset, newAnnouncement } from 'mocks/data/announcement';
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)
-  http.get(`${REQUEST_URL.announcements}/pagination`, () => {
-    return HttpResponse.json(announcementList, {
+  http.get(`${REQUEST_URL.announcements}/offset`, () => {
+    return HttpResponse.json(announcementListOffset, {
       status: 200,
     });
   }),
 
   // 공지 목록 조회 (무한스크롤)
   http.get(`${REQUEST_URL.announcements}/cursor`, () => {
-    return HttpResponse.json(announcementList, {
+    return HttpResponse.json(announcementListOffset, {
       status: 200,
     });
   }),
@@ -44,11 +44,15 @@ export const announcementHandlers = [
 
   // 공지 수정
   http.patch(`${REQUEST_URL.announcements}/:announcementId`, () => {
-    return new HttpResponse();
+    return new HttpResponse(null, {
+      status: 200,
+    });
   }),
 
   // 공지 삭제
   http.delete(`${REQUEST_URL.announcements}/:announcementId`, () => {
-    return new HttpResponse();
+    return new HttpResponse(null, {
+      status: 204,
+    });
   }),
 ];
