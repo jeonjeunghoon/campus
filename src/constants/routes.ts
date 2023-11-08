@@ -1,4 +1,8 @@
 export const ROUTES = {
+  previous: {
+    path: '..',
+    title: '',
+  },
   home: {
     path: '',
     title: '우아한테크코스',

@@ -1,30 +1,38 @@
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { CONFIRM, PLACEHOLDER } from 'constants/message';
+import { ROUTES } from 'constants/routes';
 import { useAnnouncementMutate } from 'hooks/Announcement/useAnnouncementMutate';
-import { NAME, formatAnnouncementPayload } from 'utils/announcement/format';
 
 import Button from 'components/Button';
 
 export default function AnnouncementEditor() {
   const { postAnnouncementMutate } = useAnnouncementMutate();
+  const [author, setAuthor] = useState('');
+  const [slackChannel, setSlackChannel] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const navigate = useNavigate();
 
   const cancelWriting: FormEventHandler = (event) => {
     event.preventDefault();
 
-    if (confirm(CONFIRM.cancel)) navigate('..');
+    if (confirm(CONFIRM.cancel)) navigate(ROUTES.previous.path);
   };
 
   const postAnnouncement: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    const announcementForm = event.currentTarget;
-    const newAnnouncement = formatAnnouncementPayload(announcementForm);
+    const newAnnouncement = {
+      author,
+      slackChannel,
+      title,
+      content,
+    };
 
     if (confirm(CONFIRM.post)) postAnnouncementMutate(newAnnouncement);
   };
@@ -34,34 +42,42 @@ export default function AnnouncementEditor() {
       <S.InfoContainer>
         <S.AuthorInput
           type='text'
-          placeholder={PLACEHOLDER.author}
-          name={NAME.author}
+          name={'author'}
           minLength={1}
           maxLength={20}
+          placeholder={PLACEHOLDER.author}
+          value={author}
+          onChange={(event) => setAuthor(event.currentTarget.value)}
           required
         />
         <S.SlackChannelInput
           type='text'
-          placeholder={PLACEHOLDER.slackChannel}
-          name={NAME.slackChannel}
+          name={'slackChannel'}
           minLength={1}
           maxLength={50}
+          placeholder={PLACEHOLDER.slackChannel}
+          value={slackChannel}
+          onChange={(event) => setSlackChannel(event.currentTarget.value)}
           required
         ></S.SlackChannelInput>
       </S.InfoContainer>
       <S.TitleInput
         type='text'
-        placeholder={PLACEHOLDER.title}
-        name={NAME.title}
+        name={'title'}
         minLength={1}
         maxLength={50}
+        placeholder={PLACEHOLDER.title}
+        value={title}
+        onChange={(event) => setTitle(event.currentTarget.value)}
         required
       />
       <S.ContentTextArea
-        placeholder={PLACEHOLDER.content}
-        name={NAME.content}
+        name={'content'}
         minLength={1}
         maxLength={65535}
+        placeholder={PLACEHOLDER.content}
+        value={content}
+        onChange={(event) => setContent(event.currentTarget.value)}
         required
       />
       <S.ActionContainer>
