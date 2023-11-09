@@ -5,13 +5,19 @@ import { ROUTES } from 'constants/routes';
 export const useCurrentRouteInformation = () => {
   const { pathname } = useLocation();
 
-  const isAnnouncement = !pathname.includes('/dashboard');
-  const isDashboardRoute = !isAnnouncement;
+  const isHome = pathname === '/';
+  const isAnnouncement = pathname.includes('/announcement') && !pathname.includes('/dashboard');
+  const isDashboardRoute = pathname.includes('/announcement') && pathname.includes('/dashboard');
 
   const route: Record<'path' | 'title', string> = {
-    path: ROUTES.home.path,
-    title: ROUTES.home.title,
+    path: '',
+    title: '',
   };
+
+  if (isHome) {
+    route.path = ROUTES.home.path;
+    route.title = ROUTES.home.title;
+  }
 
   if (isAnnouncement) {
     route.path = '/announcement';
