@@ -11,16 +11,14 @@ export default function AnnouncementView() {
   return (
     <S.Container>
       <S.InformationSection>
-        <S.AuthorText>{author}</S.AuthorText>
+        <p>{author}</p>
         <S.DateContainer>
           <span>{date}</span>
           <span>{time}</span>
         </S.DateContainer>
       </S.InformationSection>
       <S.ContentContainer>
-        <S.Title>
-          <h1>{title}</h1>
-        </S.Title>
+        <S.Title>{title}</S.Title>
         <S.Article>{content}</S.Article>
       </S.ContentContainer>
     </S.Container>
@@ -50,8 +48,6 @@ const S = {
       background-color: ${({ theme }) => theme.colors.contentWrapper};
     }
   `,
-
-  AuthorText: styled.p``,
 
   DateContainer: styled.div`
     display: flex;
