@@ -30,5 +30,6 @@ const S = {
 
     background-color: ${({ theme, variant }) => theme.colors.button[variant]};
     color: ${({ theme, color }) => theme.colors.button.text[color]};
+    font-family: 'BMHANNApro';
   `,
 };

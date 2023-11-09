@@ -11,6 +11,15 @@ type Props = {
 export default function List({ isDashboard = false }: Props) {
   const { announcementList } = useAnnouncementList();
 
+  if (!announcementList?.length) {
+    return (
+      <S.Container>
+        <S.Title>🥲</S.Title>
+        <S.Title>공지사항이 없어요</S.Title>
+      </S.Container>
+    );
+  }
+
   return (
     <S.List>
       {announcementList?.map((announcement) => {
@@ -21,6 +30,18 @@ export default function List({ isDashboard = false }: Props) {
 }
 
 const S = {
+  Container: styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `,
+
+  Title: styled.h1`
+    font-size: 5.2rem;
+  `,
+
   List: styled.ul`
     display: flex;
     flex-direction: column;

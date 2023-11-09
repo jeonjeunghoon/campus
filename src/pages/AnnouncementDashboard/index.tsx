@@ -15,6 +15,18 @@ export default function AnnouncementDashboard() {
 }
 
 const S = {
+  Container: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  `,
+
+  Title: styled.h1`
+    font-size: 5.2rem;
+  `,
+
   AddLink: styled(Link)`
     display: flex;
     justify-content: center;
