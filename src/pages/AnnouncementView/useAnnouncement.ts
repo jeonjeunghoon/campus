@@ -10,13 +10,14 @@ export const useAnnouncement = (announcementId: string | number | undefined) => 
     isLoading,
     isError,
   } = useQuery({
-    queryKey: [],
+    queryKey: ['announcement'],
     queryFn: () => getAnnouncement(id),
   });
   const { date, time } = parseCreatedAt(announcement ? announcement.createdAt : '');
 
   return {
     author: announcement?.author,
+    slackChannel: announcement?.slackChannel,
     date,
     time,
     title: announcement?.title,

@@ -80,7 +80,8 @@ export default function AnnouncementEditor() {
           placeholder={PLACEHOLDER.slackChannel}
           value={slackChannel}
           onChange={(event) => setSlackChannel(event.currentTarget.value)}
-          required={!isEdit} // API명세에서 수정 시 슬랙 채널은 해당 사항 없음 -> 백엔드와 이야기 해야 함
+          disabled={isEdit}
+          required
         ></S.SlackChannelInput>
       </S.InfoContainer>
       <S.TitleInput

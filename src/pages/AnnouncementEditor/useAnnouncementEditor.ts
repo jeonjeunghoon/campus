@@ -1,19 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAnnouncement } from 'pages/AnnouncementView/useAnnouncement';
 
-export const useAnnouncementEditor = (state: string | number) => {
+export const useAnnouncementEditor = (announcementId: string | number) => {
+  const [author, setAuthor] = useState('');
+  const [slackChannel, setSlackChannel] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
   const {
     author: initialAuthor,
+    slackChannel: initialSlackChannel,
     title: initialTitle,
     content: initialContent,
-  } = useAnnouncement(state);
-  const [author, setAuthor] = useState(initialAuthor);
-  const [slackChannel, setSlackChannel] = useState('');
-  const [title, setTitle] = useState(initialTitle);
-  const [content, setContent] = useState(initialContent);
+  } = useAnnouncement(announcementId);
 
-  const isEdit = Boolean(state);
+  useEffect(() => {
+    if (initialAuthor) setAuthor(initialAuthor);
+    if (initialSlackChannel) setSlackChannel(initialSlackChannel);
+    if (initialTitle) setTitle(initialTitle);
+    if (initialContent) setContent(initialContent);
+  }, [initialAuthor, initialSlackChannel, initialTitle, initialContent]);
+
+  const isEdit = Boolean(announcementId);
 
   return {
     isEdit,

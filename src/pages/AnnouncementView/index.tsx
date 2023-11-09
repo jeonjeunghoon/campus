@@ -6,11 +6,12 @@ import { useAnnouncement } from './useAnnouncement';
 
 export default function AnnouncementView() {
   const { announcementId } = useParams();
-  const { author, date, time, title, content } = useAnnouncement(announcementId);
+  const { author, slackChannel, date, time, title, content } = useAnnouncement(announcementId);
 
   return (
     <S.Container>
       <S.InformationSection>
+        <p>{slackChannel}</p>
         <p>{author}</p>
         <S.DateContainer>
           <span>{date}</span>

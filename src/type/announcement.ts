@@ -21,7 +21,7 @@ export type AnnouncementListCursorResponse = {
   lastCursorId: number;
 };
 
-export type AnnouncementResponse = Omit<Announcement, 'id' | 'slackChannel'>;
+export type AnnouncementResponse = Omit<Announcement, 'id'>;
 
 export type AnnouncementAddRequest = {
   title: FormDataEntryValue | null;

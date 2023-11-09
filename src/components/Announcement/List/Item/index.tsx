@@ -13,11 +13,19 @@ type Props = {
   id: number;
   title: string;
   author: string;
+  slackChannel: string;
   createdAt: string;
   isDashboard?: boolean;
 };
 
-export default function Item({ id, title, author, createdAt, isDashboard = false }: Props) {
+export default function Item({
+  id,
+  title,
+  author,
+  slackChannel,
+  createdAt,
+  isDashboard = false,
+}: Props) {
   const { date, time } = parseCreatedAt(createdAt);
   const { deleteAnnouncementMutate } = useAnnouncementMutate();
 
@@ -33,6 +41,8 @@ export default function Item({ id, title, author, createdAt, isDashboard = false
             <S.Title>{title}</S.Title>
           </Link>
           <S.InfoContainer>
+            <p>{slackChannel}</p>
+            <S.Round />
             <p>{author}</p>
             <S.Round />
             <p>{date}</p>
