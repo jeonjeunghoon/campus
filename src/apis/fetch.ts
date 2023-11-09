@@ -30,22 +30,14 @@ export const https = {
     return response;
   },
 
-  put: async <RequestData>(url: string, data: RequestData, authorization?: string) => {
-    const response = await instance.put(url, data, {
-      headers: {
-        Authorization: authorization,
-      },
-    });
+  put: async <RequestData>(url: string, data: RequestData) => {
+    const response = await instance.put(url, data);
 
     return response;
   },
 
-  delete: async (url: string, authorization?: string) => {
-    const response = await instance.delete(url, {
-      headers: {
-        Authorization: authorization,
-      },
-    });
+  delete: async (url: string) => {
+    const response = await instance.delete(url);
 
     return response;
   },
