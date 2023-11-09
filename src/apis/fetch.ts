@@ -2,13 +2,11 @@ import axios, { AxiosInstance } from 'axios';
 
 import { BASE_URL } from 'constants/url';
 
-const BASIC_AUTH = `Basic ${btoa('woowa')}`;
-
 const instance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: BASIC_AUTH,
+    Authorization: sessionStorage.getItem('authorization'),
   },
 });
 
@@ -32,14 +30,22 @@ export const https = {
     return response;
   },
 
-  put: async <RequestData>(url: string, data: RequestData) => {
-    const response = await instance.put(url, data);
+  put: async <RequestData>(url: string, data: RequestData, authorization?: string) => {
+    const response = await instance.put(url, data, {
+      headers: {
+        Authorization: authorization,
+      },
+    });
 
     return response;
   },
 
-  delete: async (url: string) => {
-    const response = await instance.delete(url);
+  delete: async (url: string, authorization?: string) => {
+    const response = await instance.delete(url, {
+      headers: {
+        Authorization: authorization,
+      },
+    });
 
     return response;
   },
