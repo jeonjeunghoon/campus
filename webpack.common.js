@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -55,6 +56,10 @@ module.exports = {
       openAnalyzer: false,
       generateStatsFile: true,
       statsFilename: 'bundle-report.json',
+    }),
+    new webpack.DefinePlugin({
+      PRODUCT_ENV: JSON.stringify(process.env.NODE_ENV),
+      MOCKING_ENV: JSON.stringify(process.env.MOCKING_ENV),
     }),
   ],
 };
