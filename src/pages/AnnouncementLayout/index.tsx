@@ -27,7 +27,15 @@ const S = {
 
   ContentSection: styled.section`
     flex-grow: 1;
-    width: 1000px;
+    width: 60%;
+
+    @media (max-width: 1023px) {
+      width: 80%;
+    }
+
+    @media (max-width: 424px) {
+      width: 100%;
+    }
   `,
 
   Block: styled.div`

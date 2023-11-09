@@ -8,6 +8,14 @@ const globalStyle = css`
   html {
     font-size: 10px;
     font-family: 'BMHANNApro';
+
+    @media (max-width: 1023px) {
+      font-size: 9px;
+    }
+
+    @media (max-width: 424px) {
+      font-size: 8.5px;
+    }
   }
 
   @font-face {
