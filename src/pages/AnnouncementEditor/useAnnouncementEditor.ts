@@ -15,14 +15,16 @@ export const useAnnouncementEditor = (announcementId: string | number) => {
     content: initialContent,
   } = useAnnouncement(announcementId);
 
+  const isEdit = Boolean(announcementId);
+
   useEffect(() => {
+    if (!isEdit) return;
+
     if (initialAuthor) setAuthor(initialAuthor);
     if (initialSlackChannel) setSlackChannel(initialSlackChannel);
     if (initialTitle) setTitle(initialTitle);
     if (initialContent) setContent(initialContent);
-  }, [initialAuthor, initialSlackChannel, initialTitle, initialContent]);
-
-  const isEdit = Boolean(announcementId);
+  }, [initialAuthor, initialSlackChannel, initialTitle, initialContent, isEdit]);
 
   return {
     isEdit,
