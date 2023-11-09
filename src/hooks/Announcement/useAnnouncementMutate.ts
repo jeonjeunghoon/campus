@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deleteAnnouncement, editAnnouncement, postAnnouncement } from 'apis/announcement';
+import { deleteAnnouncement, editAnnouncement, addAnnouncement } from 'apis/announcement';
+import { ROUTES } from 'constants/routes';
 import { AnnouncementAddRequest, AnnouncementEditRequest } from 'type/announcement';
 
 export const useAnnouncementMutate = (id: number = 0) => {
@@ -20,12 +21,11 @@ export const useAnnouncementMutate = (id: number = 0) => {
   });
 
   const { mutate: postAnnouncementMutate } = useMutation({
-    mutationFn: (data: AnnouncementAddRequest) => postAnnouncement(data),
-    onSuccess: (response) => {
+    mutationFn: (data: AnnouncementAddRequest) => addAnnouncement(data),
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
 
-      const trimmedUrl = response.replace('/api', '').replace('/announcements', '/announcement');
-      navigate(trimmedUrl);
+      navigate(`/${ROUTES.announcementLayout.path}`);
     },
   });
 

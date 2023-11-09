@@ -16,12 +16,8 @@ export const getAnnouncement = (announcementId: number) =>
 export const editAnnouncement = async (announcementId: number, data: AnnouncementEditRequest) =>
   await https.patch(`${REQUEST_URL.announcements}/${announcementId}`, data);
 
-export const postAnnouncement = async (data: AnnouncementAddRequest): Promise<string> => {
-  const response = await https.post(`${REQUEST_URL.announcements}`, data);
-  const location = response.headers['location'];
-
-  return location;
-};
+export const addAnnouncement = async (data: AnnouncementAddRequest) =>
+  await https.post(`${REQUEST_URL.announcements}`, data);
 
 export const deleteAnnouncement = (announcementId: number) =>
   https.delete(`${REQUEST_URL.announcements}/${announcementId}`);

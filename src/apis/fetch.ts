@@ -8,6 +8,13 @@ const instance: AxiosInstance = axios.create({
     'Content-Type': 'application/json',
     Authorization: sessionStorage.getItem('authorization'),
   },
+  transformRequest: [
+    (data, headers) => {
+      headers.Authorization = sessionStorage.getItem('authorization');
+
+      return JSON.stringify(data);
+    },
+  ],
 });
 
 export const https = {
