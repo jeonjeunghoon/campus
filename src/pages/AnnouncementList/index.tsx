@@ -4,7 +4,7 @@ import List from 'components/Announcement/List';
 
 import ErrorBoundary from 'components/ErrorBoundary';
 
-export default function Announcement() {
+export default function AnnouncementList() {
   return (
     <ErrorBoundary fallback={<div>Announcement List 에러</div>}>
       <Suspense fallback={<div>Announcement List 로딩 중...</div>}>

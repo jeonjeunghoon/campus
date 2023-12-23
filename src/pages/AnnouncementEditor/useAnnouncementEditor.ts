@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useAnnouncement } from 'pages/Announcement/useAnnouncement';
 
-export const useAnnouncementEditor = (announcementId: string | number) => {
+export const useAnnouncementEditor = (announcementId: number) => {
   const [author, setAuthor] = useState('');
   const [slackChannel, setSlackChannel] = useState('');
   const [title, setTitle] = useState('');
