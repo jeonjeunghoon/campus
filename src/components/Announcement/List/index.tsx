@@ -11,7 +11,7 @@ type Props = {
 export default function List({ isDashboard = false }: Props) {
   const { announcementList } = useAnnouncementList();
 
-  if (!announcementList?.length) {
+  if (!announcementList.length) {
     return (
       <S.Container>
         <S.Title>🥲</S.Title>
@@ -22,7 +22,7 @@ export default function List({ isDashboard = false }: Props) {
 
   return (
     <S.List>
-      {announcementList?.map((announcement) => {
+      {announcementList.map((announcement) => {
         return <Item key={announcement.id} isDashboard={isDashboard} {...announcement} />;
       })}
     </S.List>
