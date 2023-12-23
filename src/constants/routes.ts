@@ -11,11 +11,11 @@ export const ROUTES = {
     path: 'announcement',
     title: '공지사항',
   },
-  announcement: {
+  announcementList: {
     path: '',
     title: '공지사항',
   },
-  announcementView: {
+  announcement: {
     path: ':announcementId',
     title: '공지사항',
     getAbsolutePathWithId: (announcementId: number) => `/announcement/${announcementId}`,

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { getAnnouncement } from 'apis/announcement';
 import { parseCreatedAt } from 'utils/time';
@@ -9,19 +9,19 @@ export const useAnnouncement = (announcementId: string | number | undefined) => 
     data: announcement,
     isLoading,
     isError,
-  } = useQuery({
+  } = useSuspenseQuery({
     queryKey: ['announcement'],
     queryFn: () => getAnnouncement(id),
   });
-  const { date, time } = parseCreatedAt(announcement ? announcement.createdAt : '');
+  const { date, time } = parseCreatedAt(announcement.createdAt);
 
   return {
-    author: announcement?.author,
-    slackChannel: announcement?.slackChannel,
+    author: announcement.author,
+    slackChannel: announcement.slackChannel,
     date,
     time,
-    title: announcement?.title,
-    content: announcement?.content,
+    title: announcement.title,
+    content: announcement.content,
     isLoading,
     isError,
   };

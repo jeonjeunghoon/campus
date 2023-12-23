@@ -7,7 +7,7 @@ import AnnouncementDashboard from 'pages/AnnouncementDashboard';
 import AnnouncementDashboardLayout from 'pages/AnnouncementDashboardLayout';
 import AnnouncementEditor from 'pages/AnnouncementEditor';
 import AnnouncementLayout from 'pages/AnnouncementLayout';
-import AnnouncementView from 'pages/AnnouncementView';
+import AnnouncementList from 'pages/AnnouncementList';
 import Home from 'pages/Home';
 
 import App from '../../App';
@@ -27,12 +27,12 @@ export default function Router() {
           element: <AnnouncementLayout />,
           children: [
             {
-              path: ROUTES.announcement.path,
-              element: <Announcement />,
+              path: ROUTES.announcementList.path,
+              element: <AnnouncementList />,
             },
             {
-              path: ROUTES.announcementView.path,
-              element: <AnnouncementView />,
+              path: ROUTES.announcement.path,
+              element: <Announcement />,
             },
             {
               path: ROUTES.announcementDashboardLayout.path,

@@ -21,7 +21,7 @@ export const useCurrentRouteInformation = () => {
 
   if (isAnnouncement) {
     route.path = '/announcement';
-    route.title = ROUTES.announcement.title;
+    route.title = ROUTES.announcementList.title;
   }
 
   if (isDashboardRoute) {

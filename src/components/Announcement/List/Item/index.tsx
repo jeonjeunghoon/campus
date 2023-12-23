@@ -34,38 +34,36 @@ export default function Item({
   };
 
   return (
-    <li>
-      <S.Container>
-        <S.ContentContainer>
-          <Link to={ROUTES.announcementView.getAbsolutePathWithId(id)}>
-            <S.Title>{title}</S.Title>
-          </Link>
-          <S.InfoContainer>
-            <p>{slackChannel}</p>
-            <S.Round />
-            <p>{author}</p>
-            <S.Round />
-            <p>{date}</p>
-            <p>{time}</p>
-          </S.InfoContainer>
-        </S.ContentContainer>
-        {isDashboard && (
-          <S.ManageContainer>
-            <StyledLink to={ROUTES.announcementEditor.path} state={id}>
-              수정
-            </StyledLink>
-            <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>
-              삭제
-            </Button>
-          </S.ManageContainer>
-        )}
-      </S.Container>
-    </li>
+    <S.Item>
+      <S.ContentContainer>
+        <Link to={ROUTES.announcement.getAbsolutePathWithId(id)}>
+          <S.Title>{title}</S.Title>
+        </Link>
+        <S.InfoContainer>
+          <p>{slackChannel}</p>
+          <S.Round />
+          <p>{author}</p>
+          <S.Round />
+          <p>{date}</p>
+          <p>{time}</p>
+        </S.InfoContainer>
+      </S.ContentContainer>
+      {isDashboard && (
+        <S.ManageContainer>
+          <StyledLink to={ROUTES.announcementEditor.path} state={id}>
+            수정
+          </StyledLink>
+          <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>
+            삭제
+          </Button>
+        </S.ManageContainer>
+      )}
+    </S.Item>
   );
 }
 
 const S = {
-  Container: styled.div`
+  Item: styled.li`
     display: flex;
     justify-content: space-between;
     align-items: center;
