@@ -27,6 +27,7 @@ export default function Button({
 const S = {
   Button: styled.button<{ variant: VariantList; size: SizeList; color: ColorList }>`
     ${({ theme, size }) => theme.size.button[size]}
+    border-radius: 4px;
 
     background-color: ${({ theme, variant }) => theme.colors.button[variant]};
     color: ${({ theme, color }) => theme.colors.button.text[color]};
