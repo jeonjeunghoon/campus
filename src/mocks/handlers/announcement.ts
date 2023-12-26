@@ -1,11 +1,12 @@
 import { HttpResponse, http } from 'msw';
 
 import { REQUEST_URL } from 'constants/url';
-import { announcement, announcementListOffset, newAnnouncement } from 'mocks/data/announcement';
-
-const VALID_PASSWORD = '1234';
-
-const authorization = `Basic ${btoa(VALID_PASSWORD)}`;
+import {
+  announcement,
+  announcementListOffset,
+  authorization,
+  newAnnouncement,
+} from 'mocks/data/announcement';
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)

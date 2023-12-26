@@ -1,5 +1,9 @@
 import { AnnouncementListOffsetResponse, AnnouncementResponse } from 'type/announcement';
 
+const VALID_PASSWORD = '1234';
+
+export const authorization = `Basic ${btoa(VALID_PASSWORD)}`;
+
 export const announcementListOffset: AnnouncementListOffsetResponse = {
   announcements: [
     {
