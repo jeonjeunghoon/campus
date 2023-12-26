@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from 'constants/routes';
+import { default as AttendanceMain } from 'pages/Attendance/Main';
 
 import Announcement from 'pages/Announcement';
 import AnnouncementDashboard from 'pages/AnnouncementDashboard';
@@ -8,6 +9,7 @@ import AnnouncementDashboardLayout from 'pages/AnnouncementDashboardLayout';
 import AnnouncementEditor from 'pages/AnnouncementEditor';
 import AnnouncementLayout from 'pages/AnnouncementLayout';
 import AnnouncementList from 'pages/AnnouncementList';
+import Attendance from 'pages/Attendance';
 import Home from 'pages/Home';
 
 import App from '../../App';
@@ -21,6 +23,16 @@ export default function Router() {
         {
           path: ROUTES.home.path,
           element: <Home />,
+        },
+        {
+          path: ROUTES.attendance.path,
+          element: <Attendance />,
+          children: [
+            {
+              path: ROUTES.attendance.main.path,
+              element: <AttendanceMain />,
+            },
+          ],
         },
         {
           path: ROUTES.announcementLayout.path,

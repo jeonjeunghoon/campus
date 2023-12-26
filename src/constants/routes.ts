@@ -7,6 +7,13 @@ export const ROUTES = {
     path: '',
     title: '우아한테크코스',
   },
+  attendance: {
+    path: 'attendance',
+    title: '출석',
+    main: {
+      path: '',
+    },
+  },
   announcementLayout: {
     path: 'announcement',
     title: '공지사항',
