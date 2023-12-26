@@ -11,7 +11,7 @@ type Props = {
 export default function List({ isDashboard = false }: Props) {
   const { announcementList } = useAnnouncementList();
 
-  if (!announcementList.length) {
+  if (!announcementList) {
     return (
       <S.Container>
         <S.Title>🥲</S.Title>

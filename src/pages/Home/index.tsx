@@ -16,7 +16,7 @@ export default function Home() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const input = formData.get('password');
-    sessionStorage.setItem('authorization', `Basic ${btoa(String(input))}`);
+    sessionStorage.setItem('authAnnouncement', `Basic ${btoa(String(input))}`);
 
     navigate(ROUTES.announcementLayout.path);
   };

@@ -3,21 +3,47 @@ import {
   AnnouncementAddRequest,
   AnnouncementEditRequest,
   AnnouncementListOffsetResponse,
+  AnnouncementResponse,
 } from 'type/announcement';
 
-import { https } from './fetch';
+import { http } from './fetch';
 
-export const getAnnouncementList = (url: string): Promise<AnnouncementListOffsetResponse> =>
-  https.get(url);
+const generateOptions = () => {
+  return {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: sessionStorage.getItem('authAnnouncement'),
+    },
+  };
+};
 
-export const getAnnouncement = (announcementId: number) =>
-  https.get(`${REQUEST_URL.announcements}/${announcementId}`);
+export const getAnnouncementList = async (): Promise<AnnouncementListOffsetResponse> => {
+  const response = await http.get(`${REQUEST_URL.announcements}/offset`, generateOptions());
 
-export const editAnnouncement = async (announcementId: number, data: AnnouncementEditRequest) =>
-  await https.patch(`${REQUEST_URL.announcements}/${announcementId}`, data);
+  return response.data;
+};
 
-export const addAnnouncement = async (data: AnnouncementAddRequest) =>
-  await https.post(`${REQUEST_URL.announcements}`, data);
+export const getAnnouncement = async (announcementId: number): Promise<AnnouncementResponse> => {
+  const response = await http.get(
+    `${REQUEST_URL.announcements}/${announcementId}`,
+    generateOptions(),
+  );
 
-export const deleteAnnouncement = (announcementId: number) =>
-  https.delete(`${REQUEST_URL.announcements}/${announcementId}`);
+  return response.data;
+};
+
+export const editAnnouncement = async (announcementId: number, data: AnnouncementEditRequest) => {
+  return await http.patch(
+    `${REQUEST_URL.announcements}/${announcementId}`,
+    JSON.stringify(data),
+    generateOptions(),
+  );
+};
+
+export const addAnnouncement = async (data: AnnouncementAddRequest) => {
+  return await http.post(`${REQUEST_URL.announcements}`, JSON.stringify(data), generateOptions());
+};
+
+export const deleteAnnouncement = async (announcementId: number) => {
+  return await http.delete(`${REQUEST_URL.announcements}/${announcementId}`, generateOptions());
+};

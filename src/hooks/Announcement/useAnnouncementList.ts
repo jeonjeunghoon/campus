@@ -1,12 +1,11 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { getAnnouncementList } from 'apis/announcement';
-import { REQUEST_URL } from 'constants/url';
 
 export const useAnnouncementList = () => {
   const { data } = useSuspenseQuery({
     queryKey: ['announcementList'],
-    queryFn: () => getAnnouncementList(`${REQUEST_URL.announcements}/offset`),
+    queryFn: getAnnouncementList,
   });
 
   return {
