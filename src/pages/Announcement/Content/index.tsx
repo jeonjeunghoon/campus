@@ -12,40 +12,32 @@ export default function Content() {
 
   return (
     <S.Container>
-      <S.InformationSection>
-        <p>{slackChannel}</p>
-        <p>{author}</p>
+      <S.InformationContainer>
+        <S.InformationFont>{slackChannel}</S.InformationFont>
+        <S.InformationFont>{author}</S.InformationFont>
         <S.DateContainer>
-          <span>{date}</span>
-          <span>{time}</span>
+          <S.InformationFont>{date}</S.InformationFont>
+          <S.InformationFont>{time}</S.InformationFont>
         </S.DateContainer>
-      </S.InformationSection>
-      <S.ContentContainer>
-        <S.Title>{title}</S.Title>
-        <S.Article>{content}</S.Article>
-      </S.ContentContainer>
+      </S.InformationContainer>
+      <S.Title>{title}</S.Title>
+      <S.Article>{content}</S.Article>
     </S.Container>
   );
 }
 
-const ContentWrapper = `
-  padding: 24px 32px;
-`;
-
 const S = {
   Container: styled.div`
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 16px;
-    width: 100%;
-    height: 100%;
   `,
 
-  InformationSection: styled.section`
+  InformationContainer: styled.div`
     display: flex;
+    flex-shrink: 0;
     gap: 16px;
-
-    font-size: 1.6rem;
 
     & > * {
       padding: 16px 24px;
@@ -58,24 +50,21 @@ const S = {
     gap: 12px;
   `,
 
-  ContentContainer: styled.div`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 16px;
+  InformationFont: styled.p`
+    font-size: 1.6rem;
   `,
 
   Title: styled.h1`
-    ${ContentWrapper}
+    flex-shrink: 0;
+    padding: 24px 32px;
 
     background-color: ${({ theme }) => theme.colors.contentWrapper};
     font-size: 3.6rem;
   `,
 
   Article: styled.article`
-    ${ContentWrapper}
-
-    flex-grow: 1;
+    flex: 1;
+    padding: 24px 32px;
 
     background-color: ${({ theme }) => theme.colors.contentWrapper};
     font-size: 2rem;

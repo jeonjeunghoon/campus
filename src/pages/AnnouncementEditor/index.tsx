@@ -114,7 +114,6 @@ export default function AnnouncementEditor() {
 }
 
 const INPUT_STYLE = css`
-  width: 100%;
   padding: 20px 28px;
   border: 1px solid #aaaaaa;
 `;
@@ -122,12 +121,11 @@ const INPUT_STYLE = css`
 const S = {
   Form: styled.form`
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
-    width: 100%;
-    height: 100%;
     padding: 24px 32px;
 
     background-color: ${({ theme }) => theme.colors.contentWrapper};
@@ -169,6 +167,7 @@ const S = {
   ContentTextArea: styled.textarea`
     ${INPUT_STYLE}
 
+    width: 100%;
     flex: 1;
 
     font-size: 2rem;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
+import PlusIcon from 'assets/svg/plus.svg';
 import List from 'components/Announcement/List';
 import { ROUTES } from 'constants/routes';
 
@@ -13,7 +14,9 @@ export default function AnnouncementDashboard() {
     <ErrorBoundary fallback={<div>Announcement Dashboard 에러</div>}>
       <Suspense fallback={<div>Announcement Dashboard 로딩 중...</div>}>
         <List isDashboard={true} />
-        <S.AddLink to={ROUTES.announcementEditor.path}>+</S.AddLink>
+        <S.AddLink to={ROUTES.announcementEditor.path}>
+          <PlusIcon fill='#ffffff' />
+        </S.AddLink>
       </Suspense>
     </ErrorBoundary>
   );
@@ -29,13 +32,9 @@ const S = {
     right: 28px;
     width: 60px;
     height: 60px;
+    padding: 16px;
     border-radius: 50%;
 
     background-color: ${({ theme }) => theme.colors.primary};
-    font-size: 5.2rem;
-    &:active,
-    &:visited {
-      color: white;
-    }
   `,
 };

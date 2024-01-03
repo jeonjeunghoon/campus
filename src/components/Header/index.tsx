@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
-import MascotSvgIcon from 'assets/svg/mascot.svg';
+import MascotIcon from 'assets/svg/mascot.svg';
 
 import { useCurrentRouteInformation } from './useCurrentRouteInformation';
 
@@ -11,12 +11,10 @@ export default function Header() {
 
   return (
     <S.Header>
-      <S.Wrapper>
-        <S.Link to={path}>
-          <MascotSvgIcon />
-          {title}
-        </S.Link>
-      </S.Wrapper>
+      <S.Link to={path}>
+        <MascotIcon />
+        <S.Title>{title}</S.Title>
+      </S.Link>
     </S.Header>
   );
 }
@@ -25,29 +23,27 @@ const S = {
   Header: styled.header`
     display: flex;
     flex-shrink: 0;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 80px;
+    padding: 0 120px;
 
     background-color: ${({ theme }) => theme.colors.primary};
-  `,
-
-  Wrapper: styled.div`
-    width: 1000px;
   `,
 
   Link: styled(Link)`
     display: flex;
     align-items: center;
-    width: fit-content;
-
-    font-size: 3.2rem;
-    text-decoration: none;
 
     &:visited,
     &:hover,
     &:active {
       color: ${({ theme }) => theme.colors.text};
     }
+  `,
+
+  Title: styled.h1`
+    font-size: 3.2rem;
+    text-decoration: none;
   `,
 };

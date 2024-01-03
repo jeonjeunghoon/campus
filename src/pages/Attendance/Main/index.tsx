@@ -23,6 +23,7 @@ export default function Main() {
 const S = {
   Container: styled.div`
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 16px;
   `,
@@ -31,8 +32,8 @@ const S = {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     height: 100px;
+
     font-size: 4rem;
   `,
 };
