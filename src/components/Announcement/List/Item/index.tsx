@@ -36,7 +36,7 @@ export default function Item({
   return (
     <S.Item>
       <S.ContentContainer>
-        <Link to={ROUTES.announcement.getAbsolutePathWithId(id)}>
+        <Link to={ROUTES.announcement.content.getAbsolutePathWithId(id)}>
           <S.Title>{title}</S.Title>
         </Link>
         <S.InfoContainer>
@@ -50,7 +50,7 @@ export default function Item({
       </S.ContentContainer>
       {isDashboard && (
         <S.ManageContainer>
-          <StyledLink to={ROUTES.announcementEditor.path} state={id}>
+          <StyledLink to={ROUTES.dashboard.announcement.editor.path} state={id}>
             수정
           </StyledLink>
           <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>

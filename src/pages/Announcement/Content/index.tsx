@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
-import { useAnnouncement } from '../useAnnouncement';
+import { useAnnouncement } from './useAnnouncement';
 
 export default function Content() {
   const { announcementId } = useParams();

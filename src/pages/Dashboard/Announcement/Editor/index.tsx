@@ -12,7 +12,7 @@ import Button from 'components/Button';
 
 import { useAnnouncementEditor } from './useAnnouncementEditor';
 
-export default function AnnouncementEditor() {
+export default function Editor() {
   const { state } = useLocation();
   const {
     isEdit,

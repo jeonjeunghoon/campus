@@ -25,7 +25,7 @@ export const useAnnouncementMutate = (id: number = 0) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
 
-      navigate(`/${ROUTES.announcementLayout.path}`);
+      navigate(`/${ROUTES.announcement.path}`);
     },
   });
 

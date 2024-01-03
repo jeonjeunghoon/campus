@@ -3,17 +3,14 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import MascotIcon from 'assets/svg/mascot.svg';
-
-import { useCurrentRouteInformation } from './useCurrentRouteInformation';
+import { ROUTES } from 'constants/routes';
 
 export default function Header() {
-  const { path, title } = useCurrentRouteInformation();
-
   return (
     <S.Header>
-      <S.Link to={path}>
+      <S.Link to={ROUTES.home.path}>
         <MascotIcon />
-        <S.Title>{title}</S.Title>
+        <S.Title>{ROUTES.home.title}</S.Title>
       </S.Link>
     </S.Header>
   );

@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
@@ -7,18 +6,14 @@ import PlusIcon from 'assets/svg/plus.svg';
 import List from 'components/Announcement/List';
 import { ROUTES } from 'constants/routes';
 
-import ErrorBoundary from 'components/ErrorBoundary';
-
-export default function AnnouncementDashboard() {
+export default function Main() {
   return (
-    <ErrorBoundary fallback={<div>Announcement Dashboard 에러</div>}>
-      <Suspense fallback={<div>Announcement Dashboard 로딩 중...</div>}>
-        <List isDashboard={true} />
-        <S.AddLink to={ROUTES.announcementEditor.path}>
-          <PlusIcon fill='#ffffff' />
-        </S.AddLink>
-      </Suspense>
-    </ErrorBoundary>
+    <>
+      <List isDashboard={true} />
+      <S.AddLink to={ROUTES.dashboard.announcement.editor.path}>
+        <PlusIcon fill='#ffffff' />
+      </S.AddLink>
+    </>
   );
 }
 

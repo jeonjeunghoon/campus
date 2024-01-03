@@ -14,29 +14,32 @@ export const ROUTES = {
       path: '',
     },
   },
-  announcementLayout: {
+  announcement: {
     path: 'announcement',
     title: '공지사항',
+    main: {
+      path: '',
+      title: '공지사항',
+    },
+    content: {
+      path: ':announcementId',
+      title: '공지사항',
+      getAbsolutePathWithId: (announcementId: number) => `/announcement/${announcementId}`,
+    },
   },
-  announcementList: {
-    path: '',
-    title: '공지사항',
-  },
-  announcement: {
-    path: ':announcementId',
-    title: '공지사항',
-    getAbsolutePathWithId: (announcementId: number) => `/announcement/${announcementId}`,
-  },
-  announcementDashboardLayout: {
+  dashboard: {
     path: 'dashboard',
-    title: '공지사항 관리',
-  },
-  announcementDashboard: {
-    path: '',
-    title: '공지사항 관리',
-  },
-  announcementEditor: {
-    path: 'editor',
-    title: '공지사항 관리',
+    title: '관리 페이지',
+    announcement: {
+      path: 'announcement',
+      main: {
+        path: '',
+        title: '공지사항 관리 페이지',
+      },
+      editor: {
+        path: 'editor',
+        title: '공지사항 수정 페이지',
+      },
+    },
   },
 } as const;
