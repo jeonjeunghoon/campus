@@ -1,8 +1,8 @@
+import { Link } from 'react-router-dom';
+
 import styled from '@emotion/styled';
 
 import { ROUTES } from 'constants/routes';
-
-import StyledLink from 'components/StyledLink';
 
 type Props = {
   id: number;
@@ -11,13 +11,21 @@ type Props = {
 
 export default function Title({ id, title }: Props) {
   return (
-    <StyledLink to={ROUTES.announcement.content.getAbsolutePathWithId(id)}>
+    <S.Link to={ROUTES.announcement.content.getAbsolutePathWithId(id)}>
       <S.Title>{title}</S.Title>
-    </StyledLink>
+    </S.Link>
   );
 }
 
 const S = {
+  Link: styled(Link)`
+    &:visited,
+    &:active,
+    &:hover {
+      color: ${({ theme }) => theme.colors.button.text};
+    }
+  `,
+
   Title: styled.h2`
     font-size: 2.8rem;
   `,

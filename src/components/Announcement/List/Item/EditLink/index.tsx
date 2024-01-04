@@ -1,6 +1,8 @@
-import { ROUTES } from 'constants/routes';
+import { Link } from 'react-router-dom';
 
-import StyledLink from 'components/StyledLink';
+import styled from '@emotion/styled';
+
+import { ROUTES } from 'constants/routes';
 
 type Props = {
   id: number;
@@ -8,8 +10,22 @@ type Props = {
 
 export default function EditLink({ id }: Props) {
   return (
-    <StyledLink to={ROUTES.dashboard.announcement.editor.path} state={id}>
+    <S.Link to={ROUTES.dashboard.announcement.editor.path} state={id}>
       수정
-    </StyledLink>
+    </S.Link>
   );
 }
+
+const S = {
+  Link: styled(Link)`
+    ${({ theme }) => theme.size.button.medium}
+    border-radius: 4px;
+    background-color: ${({ theme }) => theme.colors.button.primary};
+
+    &:visited,
+    &:active,
+    &:hover {
+      color: ${({ theme }) => theme.colors.button.secondary};
+    }
+  `,
+};

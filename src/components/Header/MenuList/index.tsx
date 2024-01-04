@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
-import StyledLink from 'components/StyledLink';
+import styled from '@emotion/styled';
 
 import { useMenuList } from './useMenuList';
 
@@ -12,9 +12,9 @@ export default function MenuList() {
       {menuList.map((menu) => {
         return (
           <S.MenuItem key={menu.title} isFocus={menu.isFocus}>
-            <StyledLink to={menu.path}>
+            <S.Link to={menu.path}>
               <p>{menu.title}</p>
-            </StyledLink>
+            </S.Link>
           </S.MenuItem>
         );
       })}
@@ -40,6 +40,14 @@ const S = {
 
     p {
       color: ${({ theme, isFocus }) => isFocus && theme.colors.primary};
+    }
+  `,
+
+  Link: styled(Link)`
+    &:visited,
+    &:active,
+    &:hover {
+      color: ${({ theme }) => theme.colors.text};
     }
   `,
 };
