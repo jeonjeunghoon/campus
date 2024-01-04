@@ -9,7 +9,7 @@ export const ROUTES = {
   },
   attendance: {
     path: 'attendance',
-    title: '출석',
+    title: '출석체크',
     main: {
       path: '',
     },
@@ -29,16 +29,16 @@ export const ROUTES = {
   },
   dashboard: {
     path: 'dashboard',
-    title: '관리 페이지',
+    title: '관리자',
     announcement: {
       path: 'announcement',
       main: {
         path: '',
-        title: '공지사항 관리 페이지',
+        title: '공지사항 관리',
       },
       editor: {
         path: 'editor',
-        title: '공지사항 수정 페이지',
+        title: '공지사항 수정',
       },
     },
   },
