@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
 import { ROUTES } from 'constants/routes';
-import { useAnnouncementMutate } from 'hooks/Announcement/useAnnouncementMutate';
-import { parseCreatedAt } from 'utils/time';
 
-import Button from 'components/Button';
-import StyledLink from 'components/StyledLink';
+import DeleteButton from './DeleteButton';
+import EditLink from './EditLink';
+import Information from './Information';
+import Title from './Title';
 
 type Props = {
   id: number;
@@ -15,48 +15,22 @@ type Props = {
   author: string;
   slackChannel: string;
   createdAt: string;
-  isDashboard?: boolean;
 };
 
-export default function Item({
-  id,
-  title,
-  author,
-  slackChannel,
-  createdAt,
-  isDashboard = false,
-}: Props) {
-  const { date, time } = parseCreatedAt(createdAt);
-  const { deleteAnnouncementMutate } = useAnnouncementMutate();
-
-  const deleteAnnouncement = (selectedId: number) => {
-    if (confirm('정말 삭제하시겠습니까?')) deleteAnnouncementMutate(selectedId);
-  };
+export default function Item({ id, title, author, slackChannel, createdAt }: Props) {
+  const { pathname } = useLocation();
 
   return (
     <S.Item>
       <S.ContentContainer>
-        <Link to={ROUTES.announcement.content.getAbsolutePathWithId(id)}>
-          <S.Title>{title}</S.Title>
-        </Link>
-        <S.InfoContainer>
-          <p>{slackChannel}</p>
-          <S.Round />
-          <p>{author}</p>
-          <S.Round />
-          <p>{date}</p>
-          <p>{time}</p>
-        </S.InfoContainer>
+        <Title id={id} title={title} />
+        <Information author={author} slackChannel={slackChannel} createdAt={createdAt} />
       </S.ContentContainer>
-      {isDashboard && (
-        <S.ManageContainer>
-          <StyledLink to={ROUTES.dashboard.announcement.editor.path} state={id}>
-            수정
-          </StyledLink>
-          <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>
-            삭제
-          </Button>
-        </S.ManageContainer>
+      {pathname.includes(ROUTES.dashboard.path) && (
+        <S.ActionContainer>
+          <EditLink id={id} />
+          <DeleteButton id={id} />
+        </S.ActionContainer>
       )}
     </S.Item>
   );
@@ -82,32 +56,7 @@ const S = {
     gap: 16px;
   `,
 
-  Title: styled.h2`
-    font-size: 2.8rem;
-  `,
-
-  InfoContainer: styled.div`
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    color: ${({ theme }) => theme.colors.infoText};
-    font-size: 1.6rem;
-
-    & > p {
-      cursor: default;
-    }
-  `,
-
-  Round: styled.div`
-    width: 0.3rem;
-    height: 0.3rem;
-    border-radius: 50%;
-
-    background-color: ${({ theme }) => theme.colors.infoText};
-  `,
-
-  ManageContainer: styled.div`
+  ActionContainer: styled.div`
     display: flex;
     gap: 16px;
   `,

@@ -9,7 +9,7 @@ import { ROUTES } from 'constants/routes';
 export default function Main() {
   return (
     <>
-      <List isDashboard={true} />
+      <List />
       <S.AddLink to={ROUTES.dashboard.announcement.editor.path}>
         <PlusIcon fill='#ffffff' />
       </S.AddLink>
