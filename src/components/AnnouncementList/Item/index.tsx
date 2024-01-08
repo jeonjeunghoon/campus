@@ -1,8 +1,4 @@
-import { useLocation } from 'react-router-dom';
-
 import styled from '@emotion/styled';
-
-import { ROUTES } from 'constants/routes';
 
 import DeleteButton from './DeleteButton';
 import EditLink from './EditLink';
@@ -15,18 +11,17 @@ type Props = {
   author: string;
   slackChannel: string;
   createdAt: string;
+  isDashboard: boolean;
 };
 
-export default function Item({ id, title, author, slackChannel, createdAt }: Props) {
-  const { pathname } = useLocation();
-
+export default function Item({ id, title, author, slackChannel, createdAt, isDashboard }: Props) {
   return (
     <S.Item>
       <S.ContentContainer>
         <Title id={id} title={title} />
         <Information author={author} slackChannel={slackChannel} createdAt={createdAt} />
       </S.ContentContainer>
-      {pathname.includes(ROUTES.dashboard.path) && (
+      {isDashboard && (
         <S.ActionContainer>
           <EditLink id={id} />
           <DeleteButton id={id} />

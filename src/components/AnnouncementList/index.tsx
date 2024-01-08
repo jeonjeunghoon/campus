@@ -1,13 +1,17 @@
+import { useLocation } from 'react-router-dom';
+
 import styled from '@emotion/styled';
 
+import { ROUTES } from 'constants/routes';
 import { useAnnouncementList } from 'hooks/Announcement/useAnnouncementList';
 
 import Item from './Item';
 
 export default function List() {
-  const { announcementList } = useAnnouncementList();
+  const { announcementList, totalElements } = useAnnouncementList();
+  const { pathname } = useLocation();
 
-  if (!announcementList) {
+  if (!totalElements) {
     return (
       <S.Container>
         <S.Title>🥲</S.Title>
@@ -19,7 +23,13 @@ export default function List() {
   return (
     <S.List>
       {announcementList.map((announcement) => {
-        return <Item key={announcement.id} {...announcement} />;
+        return (
+          <Item
+            key={announcement.id}
+            isDashboard={pathname.includes(ROUTES.dashboard.path)}
+            {...announcement}
+          />
+        );
       })}
     </S.List>
   );
