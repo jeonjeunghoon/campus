@@ -12,6 +12,8 @@ import Announcement from 'pages/Announcement';
 import Attendance from 'pages/Attendance';
 import Dashboard from 'pages/Dashboard';
 import Home from 'pages/Home';
+import NotFound from 'pages/NotFound';
+import PrivateRouter from 'pages/PrivateRouter';
 
 import App from '../../App';
 
@@ -76,11 +78,19 @@ export default function Router() {
     },
   ];
 
+  const privateRoute = [
+    {
+      element: <PrivateRouter />,
+      children: [...announcementRoutes, ...attendanceRoutes, ...dashboardRoutes],
+    },
+  ];
+
   const router = createBrowserRouter([
     {
       path: ROUTES.home.path,
       element: <App />,
-      children: [...homeRoutes, ...attendanceRoutes, ...announcementRoutes, ...dashboardRoutes],
+      children: [...homeRoutes, ...privateRoute],
+      errorElement: <NotFound />,
     },
   ]);
 

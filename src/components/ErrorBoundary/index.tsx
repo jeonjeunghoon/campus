@@ -1,5 +1,7 @@
 import { Component, PropsWithChildren, ReactElement } from 'react';
 
+import ErrorElement from 'pages/ErrorElement';
+
 type Props = {
   onReset?: () => void;
   fallback?: ReactElement;
@@ -33,19 +35,13 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, info: Info) {
     this.setState({ error, info });
-
-    // const { onReset } = this.props;
-
-    // if (onReset) {
-    //   onReset();
-    // }
   }
 
   render() {
-    const { hasError } = this.state;
+    const { hasError, error } = this.state;
     const { fallback, children } = this.props;
 
-    const fallbackComponent = fallback ?? <div>에러 발생</div>;
+    const fallbackComponent = fallback ?? <ErrorElement status={error?.cause} />;
 
     return hasError ? fallbackComponent : children;
   }

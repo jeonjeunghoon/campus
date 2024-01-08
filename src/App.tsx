@@ -8,7 +8,7 @@ import Header from 'components/Header';
 
 export default function App() {
   return (
-    <ErrorBoundary fallback={<div>전역 에러 바운더리</div>}>
+    <ErrorBoundary>
       <Suspense fallback={<div>전역 서스펜스</div>}>
         <S.Layout>
           <Header />

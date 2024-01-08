@@ -1,13 +1,16 @@
 import { FormEventHandler } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
 import { ROUTES } from 'constants/routes';
 
+import { useAuthentication } from 'hooks/useAuthentication';
+
 import Button from 'components/Button';
 
 export default function Home() {
+  const isAuthenticate = useAuthentication();
   const navigate = useNavigate();
 
   const storePassword: FormEventHandler<HTMLFormElement> = (event) => {
@@ -20,6 +23,8 @@ export default function Home() {
 
     navigate(ROUTES.announcement.path);
   };
+
+  if (isAuthenticate) return <Navigate to={ROUTES.announcement.path} />;
 
   return (
     <S.Wrapper>
