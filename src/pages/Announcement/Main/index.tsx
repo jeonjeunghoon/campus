@@ -1,4 +1,4 @@
-import List from 'components/Announcement/List';
+import List from 'components/AnnouncementList';
 
 export default function Main() {
   return <List />;

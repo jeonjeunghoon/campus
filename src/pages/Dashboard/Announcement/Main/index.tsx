@@ -1,4 +1,4 @@
-import List from 'components/Announcement/List';
+import List from 'components/AnnouncementList';
 
 import AddLink from './AddLink';
 
