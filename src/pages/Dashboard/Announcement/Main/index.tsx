@@ -1,35 +1,12 @@
-import { Link } from 'react-router-dom';
-
-import styled from '@emotion/styled';
-
-import PlusIcon from 'assets/svg/plus.svg';
 import List from 'components/Announcement/List';
-import { ROUTES } from 'constants/routes';
+
+import AddLink from './AddLink';
 
 export default function Main() {
   return (
     <>
       <List />
-      <S.AddLink to={ROUTES.dashboard.announcement.editor.path}>
-        <PlusIcon fill='#ffffff' />
-      </S.AddLink>
+      <AddLink />
     </>
   );
 }
-
-const S = {
-  AddLink: styled(Link)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    width: 60px;
-    height: 60px;
-    padding: 16px;
-    border-radius: 50%;
-
-    background-color: ${({ theme }) => theme.colors.primary};
-  `,
-};
