@@ -1,29 +1,23 @@
-import { useLocation } from 'react-router-dom';
-
 import styled from '@emotion/styled';
 
-import { ROUTES } from 'constants/routes';
 import { useAnnouncementList } from 'hooks/Announcement/useAnnouncementList';
 
 import Empty from './Empty';
 import Item from './Item';
 
-export default function List() {
+type Props = {
+  isDashboard?: boolean;
+};
+
+export default function List({ isDashboard = false }: Props) {
   const { announcementList, totalElements } = useAnnouncementList();
-  const { pathname } = useLocation();
 
   if (!totalElements) return <Empty />;
 
   return (
     <S.List>
       {announcementList.map((announcement) => {
-        return (
-          <Item
-            key={announcement.id}
-            isDashboard={pathname.includes(ROUTES.dashboard.path)}
-            {...announcement}
-          />
-        );
+        return <Item key={announcement.id} isDashboard={isDashboard} {...announcement} />;
       })}
     </S.List>
   );

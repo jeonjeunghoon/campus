@@ -8,7 +8,7 @@ import Skeleton from './Skeleton';
 export default function Main() {
   return (
     <Suspense fallback={<Skeleton />}>
-      <List />
+      <List isDashboard />
       <AddLink />
     </Suspense>
   );
