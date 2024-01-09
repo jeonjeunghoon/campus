@@ -2,7 +2,8 @@ import { REQUEST_URL } from 'constants/url';
 import {
   AnnouncementAddRequest,
   AnnouncementEditRequest,
-  AnnouncementListOffsetResponse,
+  AnnouncementListPaginationRequest,
+  AnnouncementListPaginationResponse,
   AnnouncementResponse,
 } from 'type/announcement';
 
@@ -17,8 +18,14 @@ const generateOptions = () => {
   };
 };
 
-export const getAnnouncementList = async (): Promise<AnnouncementListOffsetResponse> => {
-  const response = await http.get(`${REQUEST_URL.announcements}/offset`, generateOptions());
+export const getAnnouncementListWithPagination = async ({
+  pageNum,
+  sizePerPage,
+}: AnnouncementListPaginationRequest): Promise<AnnouncementListPaginationResponse> => {
+  const response = await http.get(
+    `${REQUEST_URL.announcements}/offset?page=${pageNum}&size=${sizePerPage}`,
+    generateOptions(),
+  );
 
   return response.data;
 };

@@ -1,11 +1,11 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { getAnnouncementList } from 'apis/announcement';
+import { getAnnouncementListWithPagination } from 'apis/announcement';
 
 export const useAnnouncementWithPagination = () => {
   const { data } = useSuspenseQuery({
     queryKey: ['announcementList'],
-    queryFn: getAnnouncementList,
+    queryFn: getAnnouncementListWithPagination,
   });
 
   return {

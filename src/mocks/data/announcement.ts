@@ -1,10 +1,10 @@
-import { AnnouncementListOffsetResponse, AnnouncementResponse } from 'type/announcement';
+import { AnnouncementListPaginationResponse, AnnouncementResponse } from 'type/announcement';
 
 const VALID_PASSWORD = '1234';
 
 export const authorization = `Basic ${btoa(VALID_PASSWORD)}`;
 
-export const announcementListOffset: AnnouncementListOffsetResponse = {
+export const announcementListPagination: AnnouncementListPaginationResponse = {
   announcements: [
     {
       id: 1,
@@ -71,6 +71,14 @@ export const announcementListOffset: AnnouncementListOffsetResponse = {
       slackChannel: '6기-공지사항',
     },
     {
+      id: 9,
+      title: '공지 제목입니다',
+      content: '공지 내용입니다',
+      author: '아커',
+      createdAt: '2023-10-11T17:10:04:3434',
+      slackChannel: '6기-공지사항',
+    },
+    {
       id: 20,
       title: 'NEW 공지 제목입니다',
       content: 'NEW 공지 내용입니다',
@@ -79,10 +87,10 @@ export const announcementListOffset: AnnouncementListOffsetResponse = {
       slackChannel: '6기-공지사항',
     },
   ],
-  page: 0,
+  page: 1,
   size: 10,
-  totalElements: 20,
-  totalPages: 2,
+  totalElements: 10,
+  totalPages: 1,
 };
 
 export const announcement: AnnouncementResponse = {

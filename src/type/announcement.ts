@@ -7,7 +7,12 @@ export type Announcement = {
   slackChannel: string;
 };
 
-export type AnnouncementListOffsetResponse = {
+export type AnnouncementListPaginationRequest = {
+  pageNum: number;
+  sizePerPage: number;
+};
+
+export type AnnouncementListPaginationResponse = {
   announcements: Announcement[];
   page: number;
   size: number;

@@ -3,7 +3,7 @@ import { HttpResponse, delay, http } from 'msw';
 import { REQUEST_URL } from 'constants/url';
 import {
   announcement,
-  announcementListOffset,
+  announcementListPagination,
   authorization,
   newAnnouncement,
 } from 'mocks/data/announcement';
@@ -15,25 +15,33 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
+    // const { searchParams } = new URL(request.url);
+    // const pageNum = searchParams.get('pageNum');
+    // const sizePerPage = searchParams.get('sizePerPage');
+
     await delay(3000);
 
-    return HttpResponse.json(announcementListOffset, {
+    return HttpResponse.json(announcementListPagination, {
       status: 200,
     });
   }),
 
   // 공지 목록 조회 (무한스크롤)
-  http.get(`${REQUEST_URL.announcements}/cursor`, async ({ request }) => {
-    const clientAuthorization = request.headers.get('Authorization');
+  // http.get(`${REQUEST_URL.announcements}/cursor`, async ({ request }) => {
+  //   const clientAuthorization = request.headers.get('Authorization');
 
-    if (authorization !== clientAuthorization) return HttpResponse.error();
+  //   if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(3000);
+  //   const { searchParams } = new URL(request.url);
+  //   const id = searchParams.get('id');
+  //   const size = searchParams.get('size');
 
-    return HttpResponse.json(announcementListOffset, {
-      status: 200,
-    });
-  }),
+  //   await delay(3000);
+
+  //   return HttpResponse.json(announcementListPagination, {
+  //     status: 200,
+  //   });
+  // }),
 
   // 공지 조회
   http.get(`${REQUEST_URL.announcements}/:announcementId`, async ({ params, request }) => {
