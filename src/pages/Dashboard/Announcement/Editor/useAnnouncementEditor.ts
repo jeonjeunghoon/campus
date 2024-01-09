@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useAnnouncement } from 'pages/Announcement/Content/useAnnouncement';
+import { useAnnouncement } from 'components/AnnouncementContent/useAnnouncement';
 
 export const useAnnouncementEditor = (announcementId: number) => {
   const [author, setAuthor] = useState('');

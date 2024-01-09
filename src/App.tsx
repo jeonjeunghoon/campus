@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import styled from '@emotion/styled';
@@ -9,14 +8,12 @@ import Header from 'components/Header';
 export default function App() {
   return (
     <ErrorBoundary>
-      <Suspense fallback={<div>전역 서스펜스</div>}>
-        <S.Layout>
-          <Header />
-          <S.Content>
-            <Outlet />
-          </S.Content>
-        </S.Layout>
-      </Suspense>
+      <S.Layout>
+        <Header />
+        <S.Content>
+          <Outlet />
+        </S.Content>
+      </S.Layout>
     </ErrorBoundary>
   );
 }

@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from 'constants/routes';
-import AnnouncementContent from 'pages/Announcement/Content';
 import AnnouncementMain from 'pages/Announcement/Main';
 import AttendanceMain from 'pages/Attendance/Main';
 import DashboardAnnouncement from 'pages/Dashboard/Announcement';
@@ -14,6 +13,8 @@ import Dashboard from 'pages/Dashboard';
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
 import PrivateRouter from 'pages/PrivateRouter';
+
+import AnnouncementContent from 'components/AnnouncementContent';
 
 import App from '../../App';
 
