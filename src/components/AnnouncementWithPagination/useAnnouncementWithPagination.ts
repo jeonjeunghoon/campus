@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { getAnnouncementList } from 'apis/announcement';
 
-export const useAnnouncementList = () => {
+export const useAnnouncementWithPagination = () => {
   const { data } = useSuspenseQuery({
     queryKey: ['announcementList'],
     queryFn: getAnnouncementList,
@@ -12,7 +12,7 @@ export const useAnnouncementList = () => {
     announcementList: data.announcements,
     page: data.page,
     size: data.size,
-    totalElements: data.totalElements,
+    isEmpty: data.totalElements <= 0,
     totalPages: data.totalPages,
   };
 };

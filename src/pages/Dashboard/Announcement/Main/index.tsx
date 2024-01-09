@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 
-import AnnouncementList from 'components/AnnouncementList';
+import { IS_PAGINATION } from 'constants/viewport';
+
+import AnnouncementWithPagination from 'components/AnnouncementWithPagination';
 
 import AddLink from './AddLink';
 import Skeleton from './Skeleton';
@@ -8,7 +10,7 @@ import Skeleton from './Skeleton';
 export default function Main() {
   return (
     <Suspense fallback={<Skeleton />}>
-      <AnnouncementList isDashboard />
+      {IS_PAGINATION ? <AnnouncementWithPagination /> : <></>}
       <AddLink />
     </Suspense>
   );

@@ -1,18 +1,16 @@
 import { Suspense } from 'react';
 
+import { IS_PAGINATION } from 'constants/viewport';
 import Skeleton from 'pages/Announcement/Main/Skeleton';
 
-import AnnouncementList from 'components/AnnouncementList';
+import AnnouncementWithPagination from 'components/AnnouncementWithPagination';
 import ErrorBoundary from 'components/ErrorBoundary';
-
-// 데스크탑일 경우 페이지네이션으로 렌더링
-// 모바일일 경우 무한스크롤로 렌더링
 
 export default function Main() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<Skeleton />}>
-        <AnnouncementList />
+        {IS_PAGINATION ? <AnnouncementWithPagination /> : <></>}
       </Suspense>
     </ErrorBoundary>
   );
