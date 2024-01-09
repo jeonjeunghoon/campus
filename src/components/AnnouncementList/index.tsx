@@ -9,7 +9,7 @@ type Props = {
   isDashboard?: boolean;
 };
 
-export default function List({ isDashboard = false }: Props) {
+export default function AnnouncementList({ isDashboard = false }: Props) {
   const { announcementList, totalElements } = useAnnouncementList();
 
   if (!totalElements) return <Empty />;

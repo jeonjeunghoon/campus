@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import List from 'components/AnnouncementList';
+import AnnouncementList from 'components/AnnouncementList';
 
 import AddLink from './AddLink';
 import Skeleton from './Skeleton';
@@ -8,7 +8,7 @@ import Skeleton from './Skeleton';
 export default function Main() {
   return (
     <Suspense fallback={<Skeleton />}>
-      <List isDashboard />
+      <AnnouncementList isDashboard />
       <AddLink />
     </Suspense>
   );
