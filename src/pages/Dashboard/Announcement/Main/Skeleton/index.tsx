@@ -7,8 +7,8 @@ export default function Skeleton() {
     <S.List>
       {List.map((value) => {
         return (
-          <>
-            <S.SkeletonItem key={value}>
+          <li key={value}>
+            <S.SkeletonItem>
               <S.SkeletonContentContainer>
                 <S.SkeletonTitle />
                 <S.SkeletonInformation />
@@ -19,7 +19,7 @@ export default function Skeleton() {
               </S.SkeletonActionContainer>
             </S.SkeletonItem>
             <S.SkeletonAddLink />
-          </>
+          </li>
         );
       })}
     </S.List>
@@ -34,7 +34,7 @@ const S = {
     width: 100%;
   `,
 
-  SkeletonItem: styled.li`
+  SkeletonItem: styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
