@@ -3,6 +3,6 @@ type attendance = {
   status: string;
 };
 
-export type AttendanceListResponse = {
+export type GetAttendanceListResponse = {
   attendances: attendance[];
 };

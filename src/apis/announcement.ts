@@ -1,10 +1,10 @@
 import { REQUEST_URL } from 'constants/url';
 import {
-  AnnouncementContentAddRequest,
-  AnnouncementContentEditRequest,
-  AnnouncementListWithPaginationRequest,
-  AnnouncementListWithPaginationResponse,
-  AnnouncementContentResponse,
+  AddAnnouncementContentRequest,
+  EditAnnouncementContentRequest,
+  GetAnnouncementListWithPaginationRequest,
+  GetAnnouncementListWithPaginationResponse,
+  GetAnnouncementContentResponse,
 } from 'type/announcement';
 
 import { http } from './fetch';
@@ -21,7 +21,7 @@ const generateOptions = () => {
 export const getAnnouncementListWithPagination = async ({
   page,
   size,
-}: AnnouncementListWithPaginationRequest): Promise<AnnouncementListWithPaginationResponse> => {
+}: GetAnnouncementListWithPaginationRequest): Promise<GetAnnouncementListWithPaginationResponse> => {
   const response = await http.get(
     `${REQUEST_URL.announcements}/offset?page=${page}&size=${size}`,
     generateOptions(),
@@ -32,7 +32,7 @@ export const getAnnouncementListWithPagination = async ({
 
 export const getAnnouncementContent = async (
   announcementId: number,
-): Promise<AnnouncementContentResponse> => {
+): Promise<GetAnnouncementContentResponse> => {
   const response = await http.get(
     `${REQUEST_URL.announcements}/${announcementId}`,
     generateOptions(),
@@ -43,7 +43,7 @@ export const getAnnouncementContent = async (
 
 export const editAnnouncementContent = async (
   announcementId: number,
-  data: AnnouncementContentEditRequest,
+  data: EditAnnouncementContentRequest,
 ) => {
   return await http.patch(
     `${REQUEST_URL.announcements}/${announcementId}`,
@@ -52,7 +52,7 @@ export const editAnnouncementContent = async (
   );
 };
 
-export const addAnnouncementContent = async (data: AnnouncementContentAddRequest) => {
+export const addAnnouncementContent = async (data: AddAnnouncementContentRequest) => {
   return await http.post(`${REQUEST_URL.announcements}`, JSON.stringify(data), generateOptions());
 };
 

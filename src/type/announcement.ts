@@ -7,12 +7,12 @@ export type AnnouncementItem = {
   slackChannel: string;
 };
 
-export type AnnouncementListWithPaginationRequest = {
+export type GetAnnouncementListWithPaginationRequest = {
   page: number;
   size: number;
 };
 
-export type AnnouncementListWithPaginationResponse = {
+export type GetAnnouncementListWithPaginationResponse = {
   announcements: AnnouncementItem[];
   page: number;
   size: number;
@@ -20,19 +20,19 @@ export type AnnouncementListWithPaginationResponse = {
   totalPages: number;
 };
 
-export type AnnouncementListCursorResponse = {
+export type GetAnnouncementListWithInfinityScrollResponse = {
   announcements: AnnouncementItem[];
   hasNext: boolean;
   lastCursorId: number;
 };
 
-export type AnnouncementContentResponse = Omit<AnnouncementItem, 'id'>;
+export type GetAnnouncementContentResponse = Omit<AnnouncementItem, 'id'>;
 
-export type AnnouncementContentAddRequest = {
+export type AddAnnouncementContentRequest = {
   title: FormDataEntryValue | null;
   content: FormDataEntryValue | null;
   author: FormDataEntryValue | null;
   slackChannel: FormDataEntryValue | null;
 };
 
-export type AnnouncementContentEditRequest = Omit<AnnouncementContentAddRequest, 'slackChannel'>;
+export type EditAnnouncementContentRequest = Omit<AddAnnouncementContentRequest, 'slackChannel'>;

@@ -8,14 +8,14 @@ import {
   addAnnouncementContent,
 } from 'apis/announcement';
 import { ROUTES } from 'constants/routes';
-import { AnnouncementContentAddRequest, AnnouncementContentEditRequest } from 'type/announcement';
+import { AddAnnouncementContentRequest, EditAnnouncementContentRequest } from 'type/announcement';
 
 export const useAnnouncementMutate = (id: number = 0) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { mutate: editAnnouncementContentMutate } = useMutation({
-    mutationFn: (data: AnnouncementContentEditRequest) => editAnnouncementContent(id, data),
+    mutationFn: (data: EditAnnouncementContentRequest) => editAnnouncementContent(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
       const url = `/announcement/${id}`;
@@ -25,7 +25,7 @@ export const useAnnouncementMutate = (id: number = 0) => {
   });
 
   const { mutate: postAnnouncementContentMutate } = useMutation({
-    mutationFn: (data: AnnouncementContentAddRequest) => addAnnouncementContent(data),
+    mutationFn: (data: AddAnnouncementContentRequest) => addAnnouncementContent(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
 

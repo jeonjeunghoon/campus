@@ -7,7 +7,7 @@ import {
   authorization,
   newAnnouncementContent,
 } from 'mocks/data/announcement';
-import { AnnouncementListWithPaginationResponse } from 'type/announcement';
+import { GetAnnouncementListWithPaginationResponse } from 'type/announcement';
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)
@@ -28,7 +28,7 @@ export const announcementHandlers = [
 
     await delay(1500);
 
-    return HttpResponse.json<AnnouncementListWithPaginationResponse>(
+    return HttpResponse.json<GetAnnouncementListWithPaginationResponse>(
       { announcements, page, size, totalElements, totalPages },
       {
         status: 200,

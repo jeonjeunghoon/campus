@@ -1,5 +1,5 @@
 import { REQUEST_URL } from 'constants/url';
-import { AttendanceListResponse } from 'type/attendance';
+import { GetAttendanceListResponse } from 'type/attendance';
 
 import { http } from './fetch';
 
@@ -19,7 +19,7 @@ export const attendance = async () => {
 export const getAttendanceList = async (
   from: string,
   to: string,
-): Promise<AttendanceListResponse> => {
+): Promise<GetAttendanceListResponse> => {
   const response = await http.get(
     `${REQUEST_URL.attendances}?from=${from}&to=${to}`,
     generateOptions(),
