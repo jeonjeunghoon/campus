@@ -5,6 +5,8 @@ import {
   GetAnnouncementListWithPaginationRequest,
   GetAnnouncementListWithPaginationResponse,
   GetAnnouncementContentResponse,
+  GetAnnouncementContentRequest,
+  DeleteAnnouncementContentRequest,
 } from 'type/announcement';
 
 import { http } from './fetch';
@@ -30,9 +32,9 @@ export const getAnnouncementListWithPagination = async ({
   return response.data;
 };
 
-export const getAnnouncementContent = async (
-  announcementId: number,
-): Promise<GetAnnouncementContentResponse> => {
+export const getAnnouncementContent = async ({
+  announcementId,
+}: GetAnnouncementContentRequest): Promise<GetAnnouncementContentResponse> => {
   const response = await http.get(
     `${REQUEST_URL.announcements}/${announcementId}`,
     generateOptions(),
@@ -41,10 +43,10 @@ export const getAnnouncementContent = async (
   return response.data;
 };
 
-export const editAnnouncementContent = async (
-  announcementId: number,
-  data: EditAnnouncementContentRequest,
-) => {
+export const editAnnouncementContent = async ({
+  announcementId,
+  data,
+}: EditAnnouncementContentRequest) => {
   return await http.patch(
     `${REQUEST_URL.announcements}/${announcementId}`,
     JSON.stringify(data),
@@ -52,10 +54,26 @@ export const editAnnouncementContent = async (
   );
 };
 
-export const addAnnouncementContent = async (data: AddAnnouncementContentRequest) => {
-  return await http.post(`${REQUEST_URL.announcements}`, JSON.stringify(data), generateOptions());
+export const addAnnouncementContent = async ({
+  title,
+  content,
+  author,
+  slackChannel,
+}: AddAnnouncementContentRequest) => {
+  return await http.post(
+    `${REQUEST_URL.announcements}`,
+    JSON.stringify({
+      title,
+      content,
+      author,
+      slackChannel,
+    }),
+    generateOptions(),
+  );
 };
 
-export const deleteAnnouncementContent = async (announcementId: number) => {
+export const deleteAnnouncementContent = async ({
+  announcementId,
+}: DeleteAnnouncementContentRequest) => {
   return await http.delete(`${REQUEST_URL.announcements}/${announcementId}`, generateOptions());
 };

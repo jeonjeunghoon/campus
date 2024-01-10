@@ -5,7 +5,7 @@ import { getAttendanceList } from 'apis/attendance';
 export const useAttendanceList = (from: string = '', to: string = '') => {
   const { data } = useSuspenseQuery({
     queryKey: ['attendance'],
-    queryFn: () => getAttendanceList(from, to),
+    queryFn: () => getAttendanceList({ from, to }),
   });
 
   return { attendanceList: data.attendances };

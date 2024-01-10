@@ -9,8 +9,8 @@ type Props = {
 export default function DeleteButton({ id }: Props) {
   const { deleteAnnouncementContentMutate } = useAnnouncementMutate();
 
-  const deleteAnnouncementContent = (selectedId: number) => {
-    if (confirm('정말 삭제하시겠습니까?')) deleteAnnouncementContentMutate(selectedId);
+  const deleteAnnouncementContent = (announcementId: number) => {
+    if (confirm('정말 삭제하시겠습니까?')) deleteAnnouncementContentMutate({ announcementId });
   };
 
   return (

@@ -1,6 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { getAnnouncementContent } from 'apis/announcement';
+import { GetAnnouncementContentResponse } from 'type/announcement';
 import { parseCreatedAt } from 'utils/time';
 
 export const useAnnouncementContent = (announcementId: number) => {
@@ -8,9 +9,9 @@ export const useAnnouncementContent = (announcementId: number) => {
     data: announcement,
     isLoading,
     isError,
-  } = useSuspenseQuery({
+  } = useSuspenseQuery<GetAnnouncementContentResponse>({
     queryKey: ['announcement'],
-    queryFn: () => getAnnouncementContent(announcementId),
+    queryFn: () => getAnnouncementContent({ announcementId }),
   });
   const { date, time } = parseCreatedAt(announcement.createdAt);
 

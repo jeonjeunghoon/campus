@@ -26,6 +26,10 @@ export type GetAnnouncementListWithInfinityScrollResponse = {
   lastCursorId: number;
 };
 
+export type GetAnnouncementContentRequest = {
+  announcementId: number;
+};
+
 export type GetAnnouncementContentResponse = Omit<AnnouncementItem, 'id'>;
 
 export type AddAnnouncementContentRequest = {
@@ -35,4 +39,13 @@ export type AddAnnouncementContentRequest = {
   slackChannel: FormDataEntryValue | null;
 };
 
-export type EditAnnouncementContentRequest = Omit<AddAnnouncementContentRequest, 'slackChannel'>;
+export type EditData = Omit<AddAnnouncementContentRequest, 'slackChannel'>;
+
+export type EditAnnouncementContentRequest = {
+  announcementId: number;
+  data: EditData;
+};
+
+export type DeleteAnnouncementContentRequest = {
+  announcementId: number;
+};
