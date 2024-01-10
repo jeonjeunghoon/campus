@@ -2,12 +2,12 @@ import { HttpResponse, delay, http } from 'msw';
 
 import { REQUEST_URL } from 'constants/url';
 import {
-  announcement,
+  announcementContent,
   announcementList,
   authorization,
-  newAnnouncement,
+  newAnnouncementContent,
 } from 'mocks/data/announcement';
-import { AnnouncementListPaginationResponse } from 'type/announcement';
+import { AnnouncementListWithPaginationResponse } from 'type/announcement';
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)
@@ -28,7 +28,7 @@ export const announcementHandlers = [
 
     await delay(1500);
 
-    return HttpResponse.json<AnnouncementListPaginationResponse>(
+    return HttpResponse.json<AnnouncementListWithPaginationResponse>(
       { announcements, page, size, totalElements, totalPages },
       {
         status: 200,
@@ -63,11 +63,11 @@ export const announcementHandlers = [
     await delay(1500);
 
     if (announcementId === '20')
-      return HttpResponse.json(newAnnouncement, {
+      return HttpResponse.json(newAnnouncementContent, {
         status: 200,
       });
 
-    return HttpResponse.json(announcement, {
+    return HttpResponse.json(announcementContent, {
       status: 200,
     });
   }),

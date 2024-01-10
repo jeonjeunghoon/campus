@@ -1,4 +1,4 @@
-export type Announcement = {
+export type AnnouncementItem = {
   id: number;
   title: string;
   content: string;
@@ -7,13 +7,13 @@ export type Announcement = {
   slackChannel: string;
 };
 
-export type AnnouncementListPaginationRequest = {
+export type AnnouncementListWithPaginationRequest = {
   page: number;
   size: number;
 };
 
-export type AnnouncementListPaginationResponse = {
-  announcements: Announcement[];
+export type AnnouncementListWithPaginationResponse = {
+  announcements: AnnouncementItem[];
   page: number;
   size: number;
   totalElements: number;
@@ -21,18 +21,18 @@ export type AnnouncementListPaginationResponse = {
 };
 
 export type AnnouncementListCursorResponse = {
-  announcements: Announcement[];
+  announcements: AnnouncementItem[];
   hasNext: boolean;
   lastCursorId: number;
 };
 
-export type AnnouncementResponse = Omit<Announcement, 'id'>;
+export type AnnouncementContentResponse = Omit<AnnouncementItem, 'id'>;
 
-export type AnnouncementAddRequest = {
+export type AnnouncementContentAddRequest = {
   title: FormDataEntryValue | null;
   content: FormDataEntryValue | null;
   author: FormDataEntryValue | null;
   slackChannel: FormDataEntryValue | null;
 };
 
-export type AnnouncementEditRequest = Omit<AnnouncementAddRequest, 'slackChannel'>;
+export type AnnouncementContentEditRequest = Omit<AnnouncementContentAddRequest, 'slackChannel'>;

@@ -7,14 +7,14 @@ type Props = {
 };
 
 export default function DeleteButton({ id }: Props) {
-  const { deleteAnnouncementMutate } = useAnnouncementMutate();
+  const { deleteAnnouncementContentMutate } = useAnnouncementMutate();
 
-  const deleteAnnouncement = (selectedId: number) => {
-    if (confirm('정말 삭제하시겠습니까?')) deleteAnnouncementMutate(selectedId);
+  const deleteAnnouncementContent = (selectedId: number) => {
+    if (confirm('정말 삭제하시겠습니까?')) deleteAnnouncementContentMutate(selectedId);
   };
 
   return (
-    <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncement(id)}>
+    <Button variant='secondary' color='secondary' onClick={() => deleteAnnouncementContent(id)}>
       삭제
     </Button>
   );

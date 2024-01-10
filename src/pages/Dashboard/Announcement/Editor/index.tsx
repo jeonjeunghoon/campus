@@ -26,7 +26,8 @@ export default function Editor() {
     setContent,
   } = useAnnouncementEditor(state);
   const navigate = useNavigate();
-  const { editAnnouncementMutate, postAnnouncementMutate } = useAnnouncementMutate(state);
+  const { editAnnouncementContentMutate, postAnnouncementContentMutate } =
+    useAnnouncementMutate(state);
 
   const cancelWriting: FormEventHandler = (event) => {
     event.preventDefault();
@@ -34,7 +35,7 @@ export default function Editor() {
     if (confirm(CONFIRM.cancel)) navigate(ROUTES.previous.path);
   };
 
-  const postAnnouncement: FormEventHandler<HTMLFormElement> = (event) => {
+  const postAnnouncementContent: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     const newAnnouncement = {
@@ -44,10 +45,10 @@ export default function Editor() {
       content,
     };
 
-    if (confirm(CONFIRM.post)) postAnnouncementMutate(newAnnouncement);
+    if (confirm(CONFIRM.post)) postAnnouncementContentMutate(newAnnouncement);
   };
 
-  const editAnnouncement: FormEventHandler<HTMLFormElement> = (event) => {
+  const editAnnouncementContent: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     const editedAnnouncement = {
@@ -56,11 +57,11 @@ export default function Editor() {
       content,
     };
 
-    if (confirm(CONFIRM.edit)) editAnnouncementMutate(editedAnnouncement);
+    if (confirm(CONFIRM.edit)) editAnnouncementContentMutate(editedAnnouncement);
   };
 
   return (
-    <S.Form method='post' onSubmit={isEdit ? editAnnouncement : postAnnouncement}>
+    <S.Form method='post' onSubmit={isEdit ? editAnnouncementContent : postAnnouncementContent}>
       <S.InfoContainer>
         <S.AuthorInput
           type='text'

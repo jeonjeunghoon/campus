@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Announcement } from 'type/announcement';
+import { AnnouncementItem } from 'type/announcement';
 
 import DeleteButton from './DeleteButton';
 import EditLink from './EditLink';
@@ -9,7 +9,7 @@ import Information from './Information';
 import Title from './Title';
 
 type Props = {
-  announcementList: Announcement[];
+  announcementList: AnnouncementItem[];
   isEmpty: boolean;
   isDashboard: boolean;
 };

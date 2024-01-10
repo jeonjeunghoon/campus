@@ -2,11 +2,11 @@ import { useParams } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
-import { useAnnouncement } from './useAnnouncement';
+import { useAnnouncementContent } from 'hooks/Announcement/useAnnouncementContent';
 
 export default function AnnouncementContent() {
   const { announcementId } = useParams();
-  const { author, slackChannel, date, time, title, content } = useAnnouncement(
+  const { author, slackChannel, date, time, title, content } = useAnnouncementContent(
     Number(announcementId),
   );
 

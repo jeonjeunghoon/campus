@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useAnnouncement } from 'components/AnnouncementContent/useAnnouncement';
+import { useAnnouncementContent } from 'hooks/Announcement/useAnnouncementContent';
 
 export const useAnnouncementEditor = (announcementId: number) => {
   const [author, setAuthor] = useState('');
@@ -13,7 +13,7 @@ export const useAnnouncementEditor = (announcementId: number) => {
     slackChannel: initialSlackChannel,
     title: initialTitle,
     content: initialContent,
-  } = useAnnouncement(announcementId);
+  } = useAnnouncementContent(announcementId);
 
   const isEdit = Boolean(announcementId);
 

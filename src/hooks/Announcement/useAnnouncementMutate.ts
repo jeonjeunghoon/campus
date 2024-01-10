@@ -2,16 +2,20 @@ import { useNavigate } from 'react-router-dom';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deleteAnnouncement, editAnnouncement, addAnnouncement } from 'apis/announcement';
+import {
+  deleteAnnouncementContent,
+  editAnnouncementContent,
+  addAnnouncementContent,
+} from 'apis/announcement';
 import { ROUTES } from 'constants/routes';
-import { AnnouncementAddRequest, AnnouncementEditRequest } from 'type/announcement';
+import { AnnouncementContentAddRequest, AnnouncementContentEditRequest } from 'type/announcement';
 
 export const useAnnouncementMutate = (id: number = 0) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { mutate: editAnnouncementMutate } = useMutation({
-    mutationFn: (data: AnnouncementEditRequest) => editAnnouncement(id, data),
+  const { mutate: editAnnouncementContentMutate } = useMutation({
+    mutationFn: (data: AnnouncementContentEditRequest) => editAnnouncementContent(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
       const url = `/announcement/${id}`;
@@ -20,8 +24,8 @@ export const useAnnouncementMutate = (id: number = 0) => {
     },
   });
 
-  const { mutate: postAnnouncementMutate } = useMutation({
-    mutationFn: (data: AnnouncementAddRequest) => addAnnouncement(data),
+  const { mutate: postAnnouncementContentMutate } = useMutation({
+    mutationFn: (data: AnnouncementContentAddRequest) => addAnnouncementContent(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
 
@@ -29,12 +33,16 @@ export const useAnnouncementMutate = (id: number = 0) => {
     },
   });
 
-  const { mutate: deleteAnnouncementMutate } = useMutation({
-    mutationFn: deleteAnnouncement,
+  const { mutate: deleteAnnouncementContentMutate } = useMutation({
+    mutationFn: deleteAnnouncementContent,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['announcementList'] });
     },
   });
 
-  return { editAnnouncementMutate, postAnnouncementMutate, deleteAnnouncementMutate };
+  return {
+    editAnnouncementContentMutate,
+    postAnnouncementContentMutate,
+    deleteAnnouncementContentMutate,
+  };
 };
