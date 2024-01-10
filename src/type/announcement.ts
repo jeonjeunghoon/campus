@@ -8,8 +8,8 @@ export type Announcement = {
 };
 
 export type AnnouncementListPaginationRequest = {
-  pageNum: number;
-  sizePerPage: number;
+  page: number;
+  size: number;
 };
 
 export type AnnouncementListPaginationResponse = {

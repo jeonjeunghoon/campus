@@ -19,11 +19,11 @@ const generateOptions = () => {
 };
 
 export const getAnnouncementListWithPagination = async ({
-  pageNum,
-  sizePerPage,
+  page,
+  size,
 }: AnnouncementListPaginationRequest): Promise<AnnouncementListPaginationResponse> => {
   const response = await http.get(
-    `${REQUEST_URL.announcements}/offset?page=${pageNum}&size=${sizePerPage}`,
+    `${REQUEST_URL.announcements}/offset?page=${page}&size=${size}`,
     generateOptions(),
   );
 

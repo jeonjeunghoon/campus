@@ -3,10 +3,11 @@ import { HttpResponse, delay, http } from 'msw';
 import { REQUEST_URL } from 'constants/url';
 import {
   announcement,
-  announcementListPagination,
+  announcementList,
   authorization,
   newAnnouncement,
 } from 'mocks/data/announcement';
+import { AnnouncementListPaginationResponse } from 'type/announcement';
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)
@@ -15,15 +16,24 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    // const { searchParams } = new URL(request.url);
-    // const pageNum = searchParams.get('pageNum');
-    // const sizePerPage = searchParams.get('sizePerPage');
+    const { searchParams } = new URL(request.url);
+    const pageNum = searchParams.get('page') ?? 0;
+    const sizePerPage = searchParams.get('size') ?? 10;
 
-    await delay(3000);
+    const page = Number(pageNum);
+    const size = Number(sizePerPage);
+    const announcements = announcementList.slice(page * size, (page + 1) * size);
+    const totalElements = announcementList.length;
+    const totalPages = Math.ceil(totalElements / size);
 
-    return HttpResponse.json(announcementListPagination, {
-      status: 200,
-    });
+    await delay(1500);
+
+    return HttpResponse.json<AnnouncementListPaginationResponse>(
+      { announcements, page, size, totalElements, totalPages },
+      {
+        status: 200,
+      },
+    );
   }),
 
   // 공지 목록 조회 (무한스크롤)
@@ -36,7 +46,7 @@ export const announcementHandlers = [
   //   const id = searchParams.get('id');
   //   const size = searchParams.get('size');
 
-  //   await delay(3000);
+  //   await delay(1500);
 
   //   return HttpResponse.json(announcementListPagination, {
   //     status: 200,
@@ -50,7 +60,7 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(3000);
+    await delay(1500);
 
     if (announcementId === '20')
       return HttpResponse.json(newAnnouncement, {
@@ -68,7 +78,7 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(3000);
+    await delay(1500);
 
     return new HttpResponse(null, {
       status: 201,
@@ -84,7 +94,7 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(3000);
+    await delay(1500);
 
     return new HttpResponse(null, {
       status: 200,
@@ -97,7 +107,7 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(3000);
+    await delay(1500);
 
     return new HttpResponse(null, {
       status: 204,

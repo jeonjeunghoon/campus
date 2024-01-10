@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 
+import { SIZE_PER_PAGE } from 'constants/announcement';
+
 export default function Skeleton() {
-  const List = Array.from({ length: 7 }, (_, i) => i);
+  const List = Array.from({ length: SIZE_PER_PAGE }, (_, i) => i);
 
   return (
     <S.List>
