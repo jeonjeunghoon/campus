@@ -7,6 +7,8 @@ import {
   GetAnnouncementContentResponse,
   GetAnnouncementContentRequest,
   DeleteAnnouncementContentRequest,
+  GetAnnouncementListWithInfinityScrollResponse,
+  GetAnnouncementListWithInfinityScrollRequest,
 } from 'type/announcement';
 
 import { http } from './fetch';
@@ -26,6 +28,18 @@ export const getAnnouncementListWithPagination = async ({
 }: GetAnnouncementListWithPaginationRequest): Promise<GetAnnouncementListWithPaginationResponse> => {
   const response = await http.get(
     `${REQUEST_URL.announcements}/offset?page=${page}&size=${size}`,
+    generateOptions(),
+  );
+
+  return response.data;
+};
+
+export const getAnnouncementListWithInfinityScroll = async ({
+  id,
+  size,
+}: GetAnnouncementListWithInfinityScrollRequest): Promise<GetAnnouncementListWithInfinityScrollResponse> => {
+  const response = await http.get(
+    `${REQUEST_URL.announcements}/cursor?id=${id}&size=${size}`,
     generateOptions(),
   );
 

@@ -7,7 +7,11 @@ import {
   authorization,
   newAnnouncementContent,
 } from 'mocks/data/announcement';
-import { GetAnnouncementListWithPaginationResponse } from 'type/announcement';
+import {
+  GetAnnouncementContentResponse,
+  GetAnnouncementListWithInfinityScrollResponse,
+  GetAnnouncementListWithPaginationResponse,
+} from 'type/announcement';
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)
@@ -26,7 +30,7 @@ export const announcementHandlers = [
     const totalElements = announcementList.length;
     const totalPages = Math.ceil(totalElements / size);
 
-    await delay(1500);
+    await delay(1000);
 
     return HttpResponse.json<GetAnnouncementListWithPaginationResponse>(
       { announcements, page, size, totalElements, totalPages },
@@ -37,21 +41,33 @@ export const announcementHandlers = [
   }),
 
   // 공지 목록 조회 (무한스크롤)
-  // http.get(`${REQUEST_URL.announcements}/cursor`, async ({ request }) => {
-  //   const clientAuthorization = request.headers.get('Authorization');
+  http.get(`${REQUEST_URL.announcements}/cursor`, async ({ request }) => {
+    const clientAuthorization = request.headers.get('Authorization');
 
-  //   if (authorization !== clientAuthorization) return HttpResponse.error();
+    if (authorization !== clientAuthorization) return HttpResponse.error();
 
-  //   const { searchParams } = new URL(request.url);
-  //   const id = searchParams.get('id');
-  //   const size = searchParams.get('size');
+    const { searchParams } = new URL(request.url);
+    const id = Number(searchParams.get('id') ?? 1);
+    const size = Number(searchParams.get('size') ?? 6);
+    const start = id - 1;
+    const end = id + size;
+    const announcements = announcementList.slice(start, end);
+    const hasNext = announcementList.length > end;
+    const lastCursorId = end;
 
-  //   await delay(1500);
+    await delay(1000);
 
-  //   return HttpResponse.json(announcementListPagination, {
-  //     status: 200,
-  //   });
-  // }),
+    return HttpResponse.json<GetAnnouncementListWithInfinityScrollResponse>(
+      {
+        announcements,
+        hasNext,
+        lastCursorId,
+      },
+      {
+        status: 200,
+      },
+    );
+  }),
 
   // 공지 조회
   http.get(`${REQUEST_URL.announcements}/:announcementId`, async ({ params, request }) => {
@@ -60,14 +76,14 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(1500);
+    await delay(1000);
 
     if (announcementId === '20')
-      return HttpResponse.json(newAnnouncementContent, {
+      return HttpResponse.json<GetAnnouncementContentResponse>(newAnnouncementContent, {
         status: 200,
       });
 
-    return HttpResponse.json(announcementContent, {
+    return HttpResponse.json<GetAnnouncementContentResponse>(announcementContent, {
       status: 200,
     });
   }),
@@ -78,7 +94,7 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(1500);
+    await delay(1000);
 
     return new HttpResponse(null, {
       status: 201,
@@ -94,7 +110,7 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(1500);
+    await delay(1000);
 
     return new HttpResponse(null, {
       status: 200,
@@ -107,7 +123,7 @@ export const announcementHandlers = [
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
-    await delay(1500);
+    await delay(1000);
 
     return new HttpResponse(null, {
       status: 204,

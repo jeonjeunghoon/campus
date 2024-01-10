@@ -20,6 +20,11 @@ export type GetAnnouncementListWithPaginationResponse = {
   totalPages: number;
 };
 
+export type GetAnnouncementListWithInfinityScrollRequest = {
+  id: number;
+  size: number;
+};
+
 export type GetAnnouncementListWithInfinityScrollResponse = {
   announcements: AnnouncementItem[];
   hasNext: boolean;
