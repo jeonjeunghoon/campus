@@ -1,5 +1,6 @@
 import { HttpResponse, delay, http } from 'msw';
 
+import { SIZE_PER_PAGE, SIZE_PER_SCROLL } from 'constants/announcement';
 import { REQUEST_URL } from 'constants/url';
 import {
   announcementContent,
@@ -9,7 +10,7 @@ import {
 } from 'mocks/data/announcement';
 import {
   GetAnnouncementContentResponse,
-  GetAnnouncementListWithInfinityScrollResponse,
+  GetAnnouncementListWithInfiniteScrollResponse,
   GetAnnouncementListWithPaginationResponse,
 } from 'type/announcement';
 
@@ -22,7 +23,7 @@ export const announcementHandlers = [
 
     const { searchParams } = new URL(request.url);
     const pageNum = searchParams.get('page') ?? 0;
-    const sizePerPage = searchParams.get('size') ?? 10;
+    const sizePerPage = searchParams.get('size') ?? SIZE_PER_PAGE;
 
     const page = Number(pageNum);
     const size = Number(sizePerPage);
@@ -47,17 +48,17 @@ export const announcementHandlers = [
     if (authorization !== clientAuthorization) return HttpResponse.error();
 
     const { searchParams } = new URL(request.url);
-    const id = Number(searchParams.get('id') ?? 1);
-    const size = Number(searchParams.get('size') ?? 6);
+    const id = Number(searchParams.get('id') !== 'null' ? searchParams.get('id') : 1);
+    const size = Number(searchParams.get('size') ?? SIZE_PER_SCROLL);
     const start = id - 1;
     const end = id + size;
-    const announcements = announcementList.slice(start, end);
+    const announcements = announcementList.slice(start, end - 1);
     const hasNext = announcementList.length > end;
     const lastCursorId = end;
 
     await delay(1000);
 
-    return HttpResponse.json<GetAnnouncementListWithInfinityScrollResponse>(
+    return HttpResponse.json<GetAnnouncementListWithInfiniteScrollResponse>(
       {
         announcements,
         hasNext,

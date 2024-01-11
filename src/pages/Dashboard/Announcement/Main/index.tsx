@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 
-import { IS_PAGINATION } from 'constants/viewport';
+import { IS_DESKTOP } from 'constants/viewport';
 
+import AnnouncementWithInfiniteScroll from 'components/AnnouncementWithInfiniteScroll';
 import AnnouncementWithPagination from 'components/AnnouncementWithPagination';
 
 import AddLink from './AddLink';
@@ -10,7 +11,7 @@ import Skeleton from './Skeleton';
 export default function Main() {
   return (
     <Suspense fallback={<Skeleton />}>
-      {IS_PAGINATION ? <AnnouncementWithPagination /> : <></>}
+      {IS_DESKTOP ? <AnnouncementWithPagination /> : <AnnouncementWithInfiniteScroll />}
       <AddLink />
     </Suspense>
   );

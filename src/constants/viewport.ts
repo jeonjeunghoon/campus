@@ -1,1 +1,1 @@
-export const IS_PAGINATION = window.innerWidth > 1024;
+export const IS_DESKTOP = window.innerWidth > 1024;

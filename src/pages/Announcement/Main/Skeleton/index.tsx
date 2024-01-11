@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
-import { SIZE_PER_PAGE } from 'constants/announcement';
+import { SIZE_PER_PAGE, SIZE_PER_SCROLL } from 'constants/announcement';
+import { IS_DESKTOP } from 'constants/viewport';
 
 export default function Skeleton() {
-  const List = Array.from({ length: SIZE_PER_PAGE }, (_, i) => i);
+  const List = Array.from({ length: IS_DESKTOP ? SIZE_PER_PAGE : SIZE_PER_SCROLL }, (_, i) => i);
 
   return (
     <S.List>

@@ -20,12 +20,12 @@ export type GetAnnouncementListWithPaginationResponse = {
   totalPages: number;
 };
 
-export type GetAnnouncementListWithInfinityScrollRequest = {
-  id: number;
+export type GetAnnouncementListWithInfiniteScrollRequest = {
+  id: number | null;
   size: number;
 };
 
-export type GetAnnouncementListWithInfinityScrollResponse = {
+export type GetAnnouncementListWithInfiniteScrollResponse = {
   announcements: AnnouncementItem[];
   hasNext: boolean;
   lastCursorId: number;
