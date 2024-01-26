@@ -44,6 +44,7 @@ const S = {
   `,
 
   Link: styled(Link)`
+    &:link,
     &:visited,
     &:active,
     &:hover {

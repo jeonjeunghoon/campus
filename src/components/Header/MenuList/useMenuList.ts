@@ -11,12 +11,12 @@ export const useMenuList = () => {
       isFocus:
         pathname.includes(ROUTES.announcement.path) && !pathname.includes(ROUTES.dashboard.path),
     },
-    {
-      title: ROUTES.attendance.title,
-      path: ROUTES.attendance.path,
-      isFocus:
-        pathname.includes(ROUTES.attendance.path) && !pathname.includes(ROUTES.dashboard.path),
-    },
+    // {
+    //   title: ROUTES.attendance.title,
+    //   path: ROUTES.attendance.path,
+    //   isFocus:
+    //     pathname.includes(ROUTES.attendance.path) && !pathname.includes(ROUTES.dashboard.path),
+    // },
     {
       title: ROUTES.dashboard.title,
       path: ROUTES.dashboard.path,
