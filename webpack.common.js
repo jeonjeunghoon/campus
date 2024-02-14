@@ -5,6 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
   entry: './src/index.tsx',
+
   module: {
     rules: [
       {
@@ -26,6 +27,7 @@ module.exports = {
       },
     ],
   },
+
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
@@ -41,22 +43,31 @@ module.exports = {
       utils: path.resolve(__dirname, 'src/utils/'),
     },
   },
+
   output: {
     filename: '[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/',
   },
+
+  devServer: {
+    hot: true,
+    open: true,
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
     }),
+
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
       generateStatsFile: true,
       statsFilename: 'bundle-report.json',
     }),
+
     new webpack.DefinePlugin({
       PRODUCT_ENV: JSON.stringify(process.env.NODE_ENV),
       MOCKING_ENV: JSON.stringify(process.env.MOCKING_ENV),
