@@ -21,7 +21,7 @@ export type GetAnnouncementListWithPaginationResponse = {
 };
 
 export type GetAnnouncementListWithInfiniteScrollRequest = {
-  id: number | null;
+  id: number;
   size: number;
 };
 
