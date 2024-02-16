@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { BASE_URL } from 'constants/url';
+const host = window.location.hostname === 'localhost' ? process.env.BASE_URL : 'api';
 
 export const http: AxiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: host,
   headers: {
     'Content-Type': 'application/json',
   },

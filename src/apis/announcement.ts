@@ -1,4 +1,3 @@
-import { REQUEST_URL } from 'constants/url';
 import {
   AddAnnouncementContentRequest,
   EditAnnouncementContentRequest,
@@ -11,6 +10,8 @@ import {
 } from 'type/announcement';
 
 import { http } from './fetch';
+
+const ANNOUNCEMENTS_URL = 'announcements';
 
 const generateOptions = () => {
   return {
@@ -26,7 +27,7 @@ export const getAnnouncementListWithPagination = async ({
   size,
 }: GetAnnouncementListWithPaginationRequest): Promise<GetAnnouncementListWithPaginationResponse> => {
   const response = await http.get(
-    `${REQUEST_URL.announcements}/offset?page=${page}&size=${size}`,
+    `${ANNOUNCEMENTS_URL}/offset?page=${page}&size=${size}`,
     generateOptions(),
   );
 
@@ -38,7 +39,7 @@ export const getAnnouncementListWithInfiniteScroll = async ({
   size,
 }: GetAnnouncementListWithInfiniteScrollRequest) => {
   const response = await http.get(
-    `${REQUEST_URL.announcements}/cursor?id=${id}&size=${size}`,
+    `${ANNOUNCEMENTS_URL}/cursor?id=${id}&size=${size}`,
     generateOptions(),
   );
 
@@ -48,10 +49,7 @@ export const getAnnouncementListWithInfiniteScroll = async ({
 export const getAnnouncementContent = async ({
   announcementId,
 }: GetAnnouncementContentRequest): Promise<GetAnnouncementContentResponse> => {
-  const response = await http.get(
-    `${REQUEST_URL.announcements}/${announcementId}`,
-    generateOptions(),
-  );
+  const response = await http.get(`${ANNOUNCEMENTS_URL}/${announcementId}`, generateOptions());
 
   return response.data;
 };
@@ -61,7 +59,7 @@ export const editAnnouncementContent = async ({
   data,
 }: EditAnnouncementContentRequest) => {
   return await http.patch(
-    `${REQUEST_URL.announcements}/${announcementId}`,
+    `${ANNOUNCEMENTS_URL}/${announcementId}`,
     JSON.stringify(data),
     generateOptions(),
   );
@@ -74,7 +72,7 @@ export const addAnnouncementContent = async ({
   slackChannel,
 }: AddAnnouncementContentRequest) => {
   return await http.post(
-    `${REQUEST_URL.announcements}`,
+    ANNOUNCEMENTS_URL,
     JSON.stringify({
       title,
       content,
@@ -88,5 +86,5 @@ export const addAnnouncementContent = async ({
 export const deleteAnnouncementContent = async ({
   announcementId,
 }: DeleteAnnouncementContentRequest) => {
-  return await http.delete(`${REQUEST_URL.announcements}/${announcementId}`, generateOptions());
+  return await http.delete(`${ANNOUNCEMENTS_URL}/${announcementId}`, generateOptions());
 };

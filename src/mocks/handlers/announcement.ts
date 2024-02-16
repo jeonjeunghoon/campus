@@ -1,13 +1,13 @@
 import { HttpResponse, delay, http } from 'msw';
 
 import { SIZE_PER_PAGE, SIZE_PER_SCROLL } from 'constants/announcement';
-import { REQUEST_URL } from 'constants/url';
 import {
   announcementContent,
   announcementList,
   authorization,
   newAnnouncementContent,
 } from 'mocks/data/announcement';
+import { SERVER_URL } from 'mocks/data/url';
 import {
   GetAnnouncementContentResponse,
   GetAnnouncementListWithInfiniteScrollResponse,
@@ -16,7 +16,7 @@ import {
 
 export const announcementHandlers = [
   // 공지 목록 조회 (페이지네이션)
-  http.get(`${REQUEST_URL.announcements}/offset`, async ({ request }) => {
+  http.get(`${SERVER_URL.announcements}/offset`, async ({ request }) => {
     const clientAuthorization = request.headers.get('Authorization');
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
@@ -42,7 +42,7 @@ export const announcementHandlers = [
   }),
 
   // 공지 목록 조회 (무한스크롤)
-  http.get(`${REQUEST_URL.announcements}/cursor`, async ({ request }) => {
+  http.get(`${SERVER_URL.announcements}/cursor`, async ({ request }) => {
     const clientAuthorization = request.headers.get('Authorization');
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
@@ -71,7 +71,7 @@ export const announcementHandlers = [
   }),
 
   // 공지 조회
-  http.get(`${REQUEST_URL.announcements}/:announcementId`, async ({ params, request }) => {
+  http.get(`${SERVER_URL.announcements}/:announcementId`, async ({ params, request }) => {
     const { announcementId } = params;
     const clientAuthorization = request.headers.get('Authorization');
 
@@ -90,7 +90,7 @@ export const announcementHandlers = [
   }),
 
   // 공지 게시
-  http.post(REQUEST_URL.announcements, async ({ request }) => {
+  http.post(SERVER_URL.announcements, async ({ request }) => {
     const clientAuthorization = request.headers.get('Authorization');
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
@@ -106,7 +106,7 @@ export const announcementHandlers = [
   }),
 
   // 공지 수정
-  http.patch(`${REQUEST_URL.announcements}/:announcementId`, async ({ request }) => {
+  http.patch(`${SERVER_URL.announcements}/:announcementId`, async ({ request }) => {
     const clientAuthorization = request.headers.get('Authorization');
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
@@ -119,7 +119,7 @@ export const announcementHandlers = [
   }),
 
   // 공지 삭제
-  http.delete(`${REQUEST_URL.announcements}/:announcementId`, async ({ request }) => {
+  http.delete(`${SERVER_URL.announcements}/:announcementId`, async ({ request }) => {
     const clientAuthorization = request.headers.get('Authorization');
 
     if (authorization !== clientAuthorization) return HttpResponse.error();
